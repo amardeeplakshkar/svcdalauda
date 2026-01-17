@@ -34,3 +34,11 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+
+
+
+
+create a college admin cms with managing faculty info like name, designation, department, email, phone, photo, degree with this all curd operations and also need a blog which use db for storing blogs, announcements, notices these will be in blog category
+
+Create a form builder application which have prebuilt components like header tags, paragraph, fields like input, checkbox and all necessary components what forms have and in that builder we can add components and arrange their order accordingly us and also we have to show live preview of form. Form will be build via json object and use react and on save form we can share link of that form
