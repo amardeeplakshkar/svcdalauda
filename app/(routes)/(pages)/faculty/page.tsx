@@ -6,7 +6,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Search, Loader2, Mail, Phone, SearchIcon } from "lucide-react";
 import { useState } from "react";
 import { FacultyCard02 } from "@/components/admin/Faculty/FacultyCard";
-import { Navbar } from "@/components/admin/Faculty/Navbar";
 
 export default function FacultyList() {
   const { data: faculty, isLoading } = useFacultyList();
