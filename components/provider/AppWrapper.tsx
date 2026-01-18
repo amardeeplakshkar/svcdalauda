@@ -31,6 +31,7 @@ const AppWrapper = ({ children }: { children: React.ReactNode }) => {
                     </TooltipProvider>
                     {/* </ThemeProvider> */}
                 </Providers>
+                
             </ClerkProvider>
         </>
     )

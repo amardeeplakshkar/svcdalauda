@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import { storage } from "@/lib/storage";
 import { insertPostSchema } from "@/shared/schema";
 import { ZodError } from "zod";
+import { checkAuth } from "@/lib/server";
 
 export async function GET(request: Request) {
   try {
@@ -32,6 +33,8 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
+  const authError = await checkAuth();
+  if (authError) return authError;
   try {
     const body = await request.json();
     const validatedData = insertPostSchema.parse(body);

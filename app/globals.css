@@ -73,9 +73,34 @@
   --shadow-opacity: var(--shadow-opacity);
   --color-shadow-color: var(--shadow-color);
   --color-destructive-foreground: var(--destructive-foreground);
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+
+    to {
+      height: 0;
+    }
+  }
 }
 
 :root {
+  --accent-gold: "#C9A961";
+  --accent-saffron: "#FF9933";
+  --accent-blue: "#000080";
   --theme: oklch(0.4177 0.1466 26.3376);
   --radius: 0.625rem;
   --background: oklch(1 0 0);
@@ -251,7 +276,6 @@
 
   .quote-text {
     font-family: var(--font-heading);
-    font-style: italic;
   }
 
   .font-signature {
@@ -367,7 +391,6 @@
 
 .quote-text {
   font-family: var(--font-heading);
-  font-style: italic;
 }
 
 .body-text {

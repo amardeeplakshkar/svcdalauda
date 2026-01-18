@@ -1,11 +1,11 @@
 import { Label } from '@/components/ui/label'
 import { Clock, LocateIcon, Mail, Phone, School } from 'lucide-react'
 import React from 'react'
-import { MdSend } from 'react-icons/md'
+import { MdAccountBalance, MdDiversity1, MdDiversity3, MdFlag, MdGroups, MdLightbulb, MdMilitaryTech, MdSend, MdVerifiedUser, MdVisibility } from 'react-icons/md'
 
-const AboutPage = () => {
+const ContactPage = () => {
     return (
-        <div className="bg-background-light dark:bg-background-dark text-gray-800 dark:text-gray-100 transition-colors duration-200">
+        <div className="bg-background-light overflow-x-hidden dark:bg-background-dark text-gray-800 dark:text-gray-100 transition-colors duration-200">
             <header className="bg-primary py-8 text-white text-center shadow-lg">
                 <div className="container mx-auto px-4">
                     <h1 className="text-4xl quote-text md:text-5xl font-bold mb-2">Contact Us</h1>
@@ -45,7 +45,7 @@ const AboutPage = () => {
                                 <textarea className="w-full px-4 py-3 rounded border-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:ring-secondary focus:border-secondary transition-all resize-none" rows={5} id="message" name="message" placeholder="How can we help you?"></textarea>
                             </div>
                             <button className="w-full md:w-auto px-10 py-4 bg-primary hover:bg-red-900 text-white font-bold rounded shadow-lg transform active:scale-95 transition-all flex items-center justify-center gap-2" type="submit">
-                                <span className="material-icons-outlined"><MdSend/></span>
+                                <span className="material-icons-outlined"><MdSend /></span>
                                 Send Message
                             </button>
                         </form>
@@ -106,4 +106,4 @@ const AboutPage = () => {
     )
 }
 
-export default AboutPage
+export default ContactPage

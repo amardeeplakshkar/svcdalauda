@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import { storage } from "@/lib/storage";
 import { insertPostSchema } from "@/shared/schema";
 import { ZodError } from "zod";
+import { checkAuth } from "@/lib/server";
 
 export async function GET(
   _req: Request,
@@ -42,6 +43,8 @@ export async function PUT(
   request: Request,
   context: { params: Promise<{ id: string }> }
 ) {
+  const authError = await checkAuth();
+  if (authError) return authError;
   try {
     const { id } = await context.params;
     const postId = parseInt(id);
@@ -90,6 +93,8 @@ export async function DELETE(
   request: Request,
   context: { params: Promise<{ id: string }> }
 ) {
+  const authError = await checkAuth();
+  if (authError) return authError;
   try {
     const { id } = await context.params;
     const postId = parseInt(id);

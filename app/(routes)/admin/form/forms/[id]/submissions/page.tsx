@@ -29,7 +29,6 @@ export default function Submissions() {
 
   if (!form) return <div>Form not found</div>;
 
-  // Filter only input fields for columns (exclude headers/paragraphs)
   const columns = (form.content as FormElement[]).filter(el =>
     el.type !== 'header' && el.type !== 'paragraph'
   );
@@ -37,11 +36,9 @@ export default function Submissions() {
   const handleExport = () => {
     if (!submissions) return;
 
-    // Simple CSV export
     const headers = ["\"Submitted At\"", ...columns.map(c => `"${String(c.label).replace(/"/g, '""')}"`)].join(",");
     const rows = submissions.map(sub => {
       const date = sub.submittedAt ? format(new Date(sub.submittedAt), "yyyy-MM-dd HH:mm:ss") : "";
-      // Access the nested data object
       const submissionData = (sub.data as any)?.data || sub.data;
       const values = columns.map(col => {
         const val = submissionData[col.id];

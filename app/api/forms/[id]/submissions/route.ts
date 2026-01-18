@@ -1,11 +1,14 @@
 // app/api/forms/[id]/submissions/route.ts
 import { NextResponse } from "next/server";
 import { storage } from "@/lib/storage";
+import { checkAuth } from "@/lib/server";
 
 export async function GET(
     _req: Request,
     context: { params: Promise<{ id: string }> }
 ) {
+    const authError = await checkAuth();
+  if (authError) return authError;
     try {
         const { id } = await context.params; // ✅ IMPORTANT
         const formId = Number(id);

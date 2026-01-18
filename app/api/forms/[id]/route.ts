@@ -2,6 +2,7 @@
 import { NextResponse } from "next/server";
 import { api } from "@/shared/routes";
 import { storage } from "@/lib/storage";
+import { checkAuth } from "@/lib/server";
 
 export async function GET(
   _req: Request,
@@ -28,6 +29,8 @@ export async function PUT(
   req: Request,
   context: { params: Promise<{ id: string }> }
 ) {
+  const authError = await checkAuth();
+  if (authError) return authError;
   try {
     const { id } = await context.params;
     const formId = Number(id);
