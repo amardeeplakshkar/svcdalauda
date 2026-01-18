@@ -1,7 +1,23 @@
+import { Metadata } from 'next';
 import { Label } from '@/components/ui/label'
 import { Clock, LocateIcon, Mail, Phone, School } from 'lucide-react'
 import React from 'react'
 import { MdAccountBalance, MdDiversity1, MdDiversity3, MdFlag, MdGroups, MdLightbulb, MdMilitaryTech, MdSend, MdVerifiedUser, MdVisibility } from 'react-icons/md'
+
+export const metadata: Metadata = {
+  title: 'Contact Us - Swami Vivekananda Govt College',
+  description: 'Get in touch with Swami Vivekananda Govt College. Find our contact information, address, phone, email, and reach out to us with your queries.',
+  keywords: 'contact, phone, email, location, address, dalauda',
+  alternates: {
+    canonical: 'https://svcdalauda.amardeep.space/contact',
+  },
+  openGraph: {
+    title: 'Contact Us - Swami Vivekananda Govt College',
+    description: 'Reach out to us with your questions and feedback',
+    type: 'website',
+    url: 'https://svcdalauda.amardeep.space/contact',
+  },
+};
 
 const ContactPage = () => {
     return (

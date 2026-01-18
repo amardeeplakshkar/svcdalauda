@@ -1,7 +1,23 @@
+import { Metadata } from 'next';
 import { Label } from '@/components/ui/label'
 import { Clock, LocateIcon, Mail, Phone, School } from 'lucide-react'
 import React from 'react'
 import { MdAccountBalance, MdDiversity1, MdDiversity3, MdFlag, MdGroups, MdLightbulb, MdMilitaryTech, MdSend, MdVerifiedUser, MdVisibility } from 'react-icons/md'
+
+export const metadata: Metadata = {
+  title: 'About Us - Swami Vivekananda Govt College',
+  description: 'Learn about our history, heritage, vision, and mission. Discover what makes us a premier educational institution dedicated to character development and academic excellence.',
+  keywords: 'about, history, heritage, vision, mission, college, dalauda',
+  alternates: {
+    canonical: 'https://svcdalauda.amardeep.space/about',
+  },
+  openGraph: {
+    title: 'About Us - Swami Vivekananda Govt College',
+    description: 'History and heritage of our institution spanning nearly four decades',
+    type: 'website',
+    url: 'https://svcdalauda.amardeep.space/about',
+  },
+};
 
 const AboutPage = () => {
     return (
