@@ -8,21 +8,6 @@ import { Search, Loader2, Mail, Phone, SearchIcon } from "lucide-react";
 import { useState } from "react";
 import { FacultyCard02 } from "@/components/admin/Faculty/FacultyCard";
 
-export const metadata: Metadata = {
-  title: 'Faculty Directory - Swami Vivekananda Govt College',
-  description: 'Meet our distinguished faculty members. Browse our faculty directory to find contact information and academic details of our teaching staff.',
-  keywords: 'faculty, professors, teachers, directory, staff, dalauda',
-  alternates: {
-    canonical: 'https://svcdalauda.amardeep.space/faculty',
-  },
-  openGraph: {
-    title: 'Faculty Directory - Swami Vivekananda Govt College',
-    description: 'Explore our team of dedicated educators and researchers',
-    type: 'website',
-    url: 'https://svcdalauda.amardeep.space/faculty',
-  },
-};
-
 export default function FacultyList() {
   const { data: faculty, isLoading } = useFacultyList();
   const [search, setSearch] = useState("");
