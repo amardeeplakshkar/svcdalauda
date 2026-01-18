@@ -3,7 +3,6 @@
 import { usePostList } from "@/hooks/use-posts";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Loader2 } from "lucide-react";
-import { Navbar } from "@/components/admin/Faculty/Navbar";
 import { PostCard } from "@/components/admin/Faculty/PostCard";
 
 export default function BlogList() {
@@ -14,9 +13,7 @@ export default function BlogList() {
   const notices = posts?.filter(p => p.category === 'notice') || [];
 
   return (
-    <div className="min-h-screen flex flex-col font-body">
-      <Navbar />
-      
+    <div className="min-h-screen flex flex-col font-body">      
       <div className="bg-primary py-16 text-primary-foreground">
         <div className="container mx-auto px-4">
           <h1 className="font-display text-4xl md:text-5xl font-bold mb-4 text-white">Campus News & Updates</h1>

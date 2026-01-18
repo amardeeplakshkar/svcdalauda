@@ -5,7 +5,6 @@ import { ArrowLeft, Mail, Phone, GraduationCap, Award, Building2 } from "lucide-
 import { Loader2 } from "lucide-react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { Navbar } from "@/components/admin/Faculty/Navbar";
 
 export default function FacultyDetail() {
     const params = useParams<{ id: string }>();
@@ -33,8 +32,6 @@ export default function FacultyDetail() {
 
     return (
         <div className="min-h-screen flex flex-col font-body">
-            <Navbar />
-
             <main className="flex-1 bg-muted/20 py-12">
                 <div className="container mx-auto px-4">
                     <Link href="/faculty">

@@ -225,12 +225,12 @@ function PostDialog({
               name="content"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Content (HTML supported)</FormLabel>
+                  <FormLabel>Content (MARKDOWN supported)</FormLabel>
                   <FormControl>
-                    <Textarea {...field} className="min-h-[200px] font-mono text-sm" placeholder="<p>Write your content here...</p>" />
+                    <Textarea {...field} className="min-h-[200px] font-mono text-sm" placeholder="Write your content here..." />
                   </FormControl>
                   <p className="text-xs text-muted-foreground">
-                    Tip: You can use basic HTML tags for formatting.
+                    Tip: You can use basic MARKDOWN for formatting.
                   </p>
                   <FormMessage />
                 </FormItem>

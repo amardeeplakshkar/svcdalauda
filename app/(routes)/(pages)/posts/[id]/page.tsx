@@ -7,7 +7,6 @@ import { format } from "date-fns";
 import { Badge } from "@/components/ui/badge";
 import { Loader2 } from "lucide-react";
 import Link from "next/link";
-import { Navbar } from "@/components/admin/Faculty/Navbar";
 import { useParams } from "next/navigation";
 
 import ReactMarkdown from "react-markdown";
@@ -40,8 +39,6 @@ export default function PostDetail() {
 
     return (
         <div className="min-h-screen flex flex-col font-body bg-background">
-            <Navbar />
-
             <main className="flex-1 py-12">
                 <article className="container mx-auto px-4 max-w-4xl">
                     <Link href="/posts">
