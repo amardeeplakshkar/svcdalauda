@@ -72,7 +72,7 @@ export default function PublicForm() {
         </div>
         
         <div className="mt-8 text-center text-sm text-muted-foreground">
-          Powered by <span className="font-bold text-foreground">FormCraft</span>
+          Powered by <span className="font-bold text-foreground">SVGC, Dalauda</span>
         </div>
       </div>
     </div>

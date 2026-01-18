@@ -7,10 +7,8 @@ import { FormElement } from "@/shared/schema";
 import { useParams } from "next/navigation";
 
 export default function PublicForm() {
- const params = useParams<{ id: string }>();
-   const formId = Number(params.id);
- 
-  
+  const params = useParams<{ id: string }>();
+  const formId = Number(params.id);
   const { data: form, isLoading, error } = useForm(formId);
   const submitMutation = useSubmitForm();
 
@@ -42,7 +40,7 @@ export default function PublicForm() {
           </div>
           <h1 className="text-2xl font-bold text-foreground mb-2">Submission Received!</h1>
           <p className="text-muted-foreground mb-6">Thank you for filling out <strong>{form.name}</strong>. Your response has been recorded.</p>
-          <button 
+          <button
             onClick={() => window.location.replace('/')}
             className="text-primary hover:underline text-sm font-medium"
           >
@@ -61,18 +59,18 @@ export default function PublicForm() {
             <h1 className="text-3xl font-display font-bold text-foreground mb-2">{form.name}</h1>
             {form.description && <p className="text-muted-foreground">{form.description}</p>}
           </div>
-          
+
           <div className="p-8">
-            <FormRenderer 
-              elements={form.content as FormElement[]} 
+            <FormRenderer
+              elements={form.content as FormElement[]}
               onSubmit={(data) => submitMutation.mutate({ id: formId, data })}
               isSubmitting={submitMutation.isPending}
             />
           </div>
         </div>
-        
+
         <div className="mt-8 text-center text-sm text-muted-foreground">
-          Powered by <span className="font-bold text-foreground">FormCraft</span>
+          Powered by <span className="font-bold text-foreground">SVGC, Dalauda</span>
         </div>
       </div>
     </div>

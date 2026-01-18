@@ -38,17 +38,19 @@ export default function Submissions() {
     if (!submissions) return;
 
     // Simple CSV export
-    const headers = ["Submitted At", ...columns.map(c => c.label)];
+    const headers = ["\"Submitted At\"", ...columns.map(c => `"${String(c.label).replace(/"/g, '""')}"`)].join(",");
     const rows = submissions.map(sub => {
       const date = sub.submittedAt ? format(new Date(sub.submittedAt), "yyyy-MM-dd HH:mm:ss") : "";
+      // Access the nested data object
+      const submissionData = (sub.data as any)?.data || sub.data;
       const values = columns.map(col => {
-        const val = (sub.data as Record<string, any>)[col.id];
+        const val = submissionData[col.id];
         return val ? `"${String(val).replace(/"/g, '""')}"` : "";
       });
-      return [date, ...values].join(",");
+      return [`"${date}"`, ...values].join(",");
     });
 
-    const csvContent = "data:text/csv;charset=utf-8," + [headers.join(","), ...rows].join("\n");
+    const csvContent = "data:text/csv;charset=utf-8," + [headers, ...rows].join("\n");
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement("a");
     link.setAttribute("href", encodedUri);
@@ -67,7 +69,7 @@ export default function Submissions() {
               <ArrowLeft className="w-5 h-5" />
             </Link>
             <div>
-              <h1 className="font-display font-bold text-lg">{form.name}</h1>
+              <h1 className="font-display font-bold text-lg line-clamp-1">{form.name}</h1>
               <p className="text-xs text-muted-foreground">Submissions</p>
             </div>
           </div>
@@ -82,7 +84,7 @@ export default function Submissions() {
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="bg-card rounded-xl border shadow-sm overflow-hidden">
           <div className="p-6 border-b flex items-center justify-between">
             <div className="flex items-center gap-2">
@@ -91,7 +93,7 @@ export default function Submissions() {
             </div>
           </div>
 
-          <div className="overflow-x-auto">
+          <div className="hidden xl:block overflow-x-auto">
             <Table>
               <TableHeader>
                 <TableRow>
@@ -103,18 +105,42 @@ export default function Submissions() {
               </TableHeader>
               <TableBody>
                 {submissions && submissions.length > 0 ? (
-                  submissions.map((submission) => (
-                    <TableRow key={submission.id}>
-                      <TableCell className="text-muted-foreground font-mono text-xs">
-                        {submission.submittedAt ? format(new Date(submission.submittedAt), "MMM d, yyyy HH:mm") : "-"}
-                      </TableCell>
-                      {columns.map((col) => (
-                        <TableCell key={col.id}>
-                          {String((submission.data as Record<string, any>)[col.id] || "-")}
+                  submissions.map((submission) => {
+                    // Handle nested data structure - check if data.data exists, otherwise use data directly
+                    const submissionData = (submission.data as any)?.data || submission.data;
+                    
+                    return (
+                      <TableRow key={submission.id}>
+                        <TableCell className="text-muted-foreground font-mono text-xs">
+                          {submission.submittedAt ? format(new Date(submission.submittedAt), "MMM d, yyyy HH:mm") : "-"}
                         </TableCell>
-                      ))}
-                    </TableRow>
-                  ))
+                        {columns.map((col) => {
+                          const value = submissionData[col.id];
+
+                          // Check if this is a file field and has a URL value
+                          const isFileUrl = col.type === 'file' && value && typeof value === 'string' && (value.startsWith('http://') || value.startsWith('https://'));
+
+                          return (
+                            <TableCell key={col.id}>
+                              {isFileUrl ? (
+                                <a
+                                  href={value}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="text-primary hover:underline inline-flex items-center gap-1"
+                                >
+                                  <Download className="w-3 h-3" />
+                                  View File
+                                </a>
+                              ) : (
+                                String(value || "-")
+                              )}
+                            </TableCell>
+                          );
+                        })}
+                      </TableRow>
+                    );
+                  })
                 ) : (
                   <TableRow>
                     <TableCell colSpan={columns.length + 1} className="h-32 text-center text-muted-foreground">
@@ -124,6 +150,52 @@ export default function Submissions() {
                 )}
               </TableBody>
             </Table>
+          </div>
+          <div className="xl:hidden divide-y">
+            {submissions && submissions.length > 0 ? (
+              submissions.map((submission) => {
+                const submissionData = (submission.data as any)?.data || submission.data;
+                
+                return (
+                  <div key={submission.id} className="p-4 space-y-3">
+                    <div className="text-xs text-muted-foreground font-mono">
+                      {submission.submittedAt ? format(new Date(submission.submittedAt), "MMM d, yyyy HH:mm") : "-"}
+                    </div>
+                    <div className="space-y-2">
+                      {columns.map((col) => {
+                        const value = submissionData[col.id];
+                        const isFileUrl = col.type === 'file' && value && typeof value === 'string' && (value.startsWith('http://') || value.startsWith('https://'));
+
+                        return (
+                          <div key={col.id} className="flex flex-col gap-1">
+                            <span className="text-xs font-medium text-muted-foreground">{col.label}</span>
+                            <div className="text-sm">
+                              {isFileUrl ? (
+                                <a
+                                  href={value}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="text-primary hover:underline inline-flex items-center gap-1"
+                                >
+                                  <Download className="w-3 h-3" />
+                                  View File
+                                </a>
+                              ) : (
+                                <span className="break-words">{String(value || "-")}</span>
+                              )}
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                );
+              })
+            ) : (
+              <div className="p-8 text-center text-muted-foreground">
+                No submissions yet.
+              </div>
+            )}
           </div>
         </div>
       </main>

@@ -19,15 +19,17 @@ interface FormRendererProps {
   readOnly?: boolean;
 }
 
-export function FormRenderer({ 
-  elements, 
-  onSubmit, 
-  isSubmitting = false, 
+export function FormRenderer({
+  elements,
+  onSubmit,
+  isSubmitting = false,
   submitLabel = "Submit Form",
-  readOnly = false 
+  readOnly = false
 }: FormRendererProps) {
   const [formData, setFormData] = useState<Record<string, any>>({});
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [uploadProgress, setUploadProgress] = useState<Record<string, boolean>>({});
+  const [submissionError, setSubmissionError] = useState<string | null>(null);
 
   const handleChange = (id: string, value: any) => {
     setFormData((prev) => ({ ...prev, [id]: value }));
@@ -40,7 +42,7 @@ export function FormRenderer({
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (readOnly) return;
 
@@ -56,31 +58,66 @@ export function FormRenderer({
       return;
     }
 
-    onSubmit?.(formData);
+    try {
+      // Process file uploads
+      const processedData = { ...formData };
+
+      for (const element of elements) {
+        if (element.type === 'file' && formData[element.id] instanceof File) {
+          setUploadProgress((prev) => ({ ...prev, [element.id]: true }));
+
+          try {
+            const { uploadFile } = await import('@/lib/supabase');
+            const fileUrl = await uploadFile(formData[element.id] as File);
+            processedData[element.id] = fileUrl;
+          } catch (uploadError) {
+            setErrors((prev) => ({
+              ...prev,
+              [element.id]: uploadError instanceof Error ? uploadError.message : "File upload failed"
+            }));
+            setUploadProgress((prev) => ({ ...prev, [element.id]: false }));
+            return;
+          } finally {
+            setUploadProgress((prev) => ({ ...prev, [element.id]: false }));
+          }
+        }
+      }
+
+      onSubmit?.(processedData);
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'Form submission failed';
+      console.error('Form submission error:', error);
+      setSubmissionError(errorMessage);
+    }
   };
 
   return (
-   <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-6">
+      {submissionError && (
+        <div className="bg-destructive/10 border border-destructive/30 text-destructive px-4 py-3 rounded-md text-sm">
+          {submissionError}
+        </div>
+      )}
       {elements.map((element) => (
         <div key={element.id} className="space-y-2">
           {element.type === "header" && (
             <h2 className="text-2xl font-bold text-foreground mt-4 mb-2">{element.label}</h2>
           )}
-          
+
           {element.type === "paragraph" && (
             <p className="text-muted-foreground mb-4">{element.label}</p>
           )}
 
           {element.type !== "header" && element.type !== "paragraph" && (
             <div className="space-y-1.5">
-              <label 
+              <label
                 htmlFor={element.id}
                 className="text-sm font-medium text-foreground block"
               >
                 {element.label}
                 {element.required && <span className="text-destructive ml-1">*</span>}
               </label>
-              
+
               {element.type === "text" && (
                 <Input
                   id={element.id}
@@ -226,18 +263,31 @@ export function FormRenderer({
               )}
 
               {element.type === "file" && (
-                <div className="flex items-center gap-2 py-1">
-                  <Input
-                    id={element.id}
-                    type="file"
-                    accept={element.accept}
-                    disabled={readOnly}
-                    onChange={(e) => handleChange(element.id, e.target.files?.[0]?.name)}
-                    className={cn(
-                      "cursor-pointer",
-                      errors[element.id] && "border-destructive focus-visible:ring-destructive"
-                    )}
-                  />
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2 py-1">
+                    <Input
+                      id={element.id}
+                      type="file"
+                      accept={element.accept}
+                      disabled={readOnly || uploadProgress[element.id]}
+                      onChange={(e) => handleChange(element.id, e.target.files?.[0])}
+                      className={cn(
+                        "cursor-pointer",
+                        errors[element.id] && "border-destructive focus-visible:ring-destructive"
+                      )}
+                    />
+                  </div>
+                  {formData[element.id] instanceof File && (
+                    <p className="text-xs text-muted-foreground">
+                      Selected: {(formData[element.id] as File).name}
+                    </p>
+                  )}
+                  {uploadProgress[element.id] && (
+                    <p className="text-xs text-primary flex items-center gap-2">
+                      <span className="w-3 h-3 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
+                      Uploading file...
+                    </p>
+                  )}
                 </div>
               )}
 
