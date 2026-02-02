@@ -43,16 +43,16 @@ const HeroSection = () => {
                 {/* TEXT — FRONT LAYER */}
                 <div className="relative z-30 w-full max-w-2xl text-shadow-hero">
                     <div className="pl-6 md:pl-6">
-                        <h3 className="quote-text relative mb-4 text-2xl font-bold text-primary md:text-4xl font-heading">
-                            <span className="absolute -left-4 -top-4 text-6xl font-serif leading-none text-yellow-500">
+                        <h3 className="quote-text italic relative mb-4 text-2xl font-bold text-primary md:text-4xl font-heading">
+                            <span className="absolute -left-4 -top-4 text-6xl font-serif leading-none text-primary">
                                 &#8220;
                             </span>
                             Arise! Awake!
                         </h3>
 
-                        <p className="quote-text text-wrap relative text-lg leading-relaxed text-primary md:text-2xl">
+                        <p className="quote-text italic text-wrap relative text-lg leading-relaxed text-primary md:text-2xl">
                             And stop not until the <br className="md:sr-only block"/> goal is reached.
-                            <span className="absolute -bottom-4 text-6xl font-serif leading-none text-yellow-500">
+                            <span className="absolute -bottom-4 text-6xl font-serif leading-none text-primary">
                                 &#8221;
                             </span>
                         </p>

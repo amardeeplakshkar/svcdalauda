@@ -76,8 +76,8 @@ export const PrincipalMessage02 = () => {
           <div className="lg:col-span-5 relative group">
             <div className="absolute -inset-4 border-2 border-gold/30 rounded-2xl transition-all group-hover:inset-0"></div>
             <div className="relative z-10 overflow-hidden rounded-xl shadow-2xl border-4 border-white dark:border-gray-800">
-              <img alt="Portrait of the Principal" className="w-full aspect-[4/5] object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyrdOBljxSmd6GAkhZyGRV3EcPKwP_1ENTFDucUx3m_I9jU5-tuWyoeuapSEaMRt-3MOY93eOd_O7lWIEIYS3Mz2EHvYq-wIVCHg9SwW0vclJEPpZDMv0yycznrUSWEk9yyeO5kPS6KWFYES2BU6WUCFNhehcuxFF0tMDKgIAeDMRc5YifGKiaqoCnyz8aZwyDOzN2KZkYkfWxYvTtawqpScKpKZCkfE_vfZybUIoZrkniqdPJhmaQnujoKRj6Lnjb9Drmbk6IQQ8" />
-              <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent text-white">
+              <img alt="Portrait of the Principal" className="w-full aspect-4/5 object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyrdOBljxSmd6GAkhZyGRV3EcPKwP_1ENTFDucUx3m_I9jU5-tuWyoeuapSEaMRt-3MOY93eOd_O7lWIEIYS3Mz2EHvYq-wIVCHg9SwW0vclJEPpZDMv0yycznrUSWEk9yyeO5kPS6KWFYES2BU6WUCFNhehcuxFF0tMDKgIAeDMRc5YifGKiaqoCnyz8aZwyDOzN2KZkYkfWxYvTtawqpScKpKZCkfE_vfZybUIoZrkniqdPJhmaQnujoKRj6Lnjb9Drmbk6IQQ8" />
+              <div className="absolute bottom-0 left-0 right-0 p-6 bg-linear-to-t from-black/80 to-transparent text-white">
                 <p className="quote-text text-2xl font-bold">NAME</p>
                 <p className="text-gold font-medium uppercase tracking-widest text-sm">Principal, SVGC Dalauda</p>
               </div>
@@ -113,7 +113,7 @@ export const PrincipalMessage02 = () => {
                     </span>
                   </button>
                 </Link>
-                <Link href={'/about'}>
+                <Link href={'/contact'}>
                 <button className="px-8 py-3 border-2 border-primary/20 dark:border-gold/20 hover:border-primary dark:hover:border-gold text-primary dark:text-gold font-semibold rounded-lg transition-colors">
                   Contact Office
                 </button>

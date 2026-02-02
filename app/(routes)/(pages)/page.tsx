@@ -8,6 +8,7 @@ import HeroSection from '@/components/core/HeroSection'
 import Notices from '@/components/core/Notices'
 import { PrincipalMessage02 } from '@/components/core/PrincipalMessage'
 import QuickLinks from '@/components/core/QuickLinks'
+import StudentResources from '@/components/core/StudentResources';
 
 export const metadata: Metadata = {
   title: 'Swami Vivekananda Govt College, Dalauda',
@@ -27,17 +28,20 @@ export const metadata: Metadata = {
 const App = () => {
   return (
     <div className='bg-accent/30'>
-      <HeroSection/>
-      <QuickLinks/>
+      <HeroSection />
+      <QuickLinks />
       <Container className='p-2'>
-      <PrincipalMessage02/>
+        <PrincipalMessage02 />
       </Container>
-      <Notices/>
-      <CourseSection/>
+      <Notices />
+      <CourseSection />
       <Container className='p-2'>
-      <CampusFacilities/>
+        <CampusFacilities />
       </Container>
-      <Gallary/>
+      <Gallary />
+      <Container className='p-2'>
+        <StudentResources />
+      </Container>
     </div>
   )
 }
