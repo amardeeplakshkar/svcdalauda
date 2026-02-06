@@ -5,13 +5,13 @@ export const metadata: Metadata = {
   description: 'Stay updated with the latest news, announcements, and notices from Swami Vivekananda Govt College. Read our blog posts and important campus updates.',
   keywords: 'news, updates, announcements, notices, blog, campus',
   alternates: {
-    canonical: 'https://svcdalauda.amardeep.space/posts',
+    canonical: 'https://svgcdalauda.in/posts',
   },
   openGraph: {
     title: 'Campus News & Updates - Swami Vivekananda Govt College',
     description: 'Latest campus news, announcements, and important updates',
     type: 'website',
-    url: 'https://svcdalauda.amardeep.space/posts',
+    url: 'https://svgcdalauda.in/posts',
   },
 };
 

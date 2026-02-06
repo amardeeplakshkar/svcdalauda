@@ -9,13 +9,13 @@ export async function generateMetadata({
     title: 'Faculty Member - Swami Vivekananda Govt College',
     description: 'View detailed profile of a faculty member at Swami Vivekananda Govt College. Find contact information, expertise, and academic qualifications.',
     alternates: {
-      canonical: `https://svcdalauda.amardeep.space/faculty/${params.id}`,
+      canonical: `https://svgcdalauda.in/faculty/${params.id}`,
     },
     openGraph: {
       title: 'Faculty Member - Swami Vivekananda Govt College',
       description: 'Faculty member profile and details',
       type: 'profile',
-      url: `https://svcdalauda.amardeep.space/faculty/${params.id}`,
+      url: `https://svgcdalauda.in/faculty/${params.id}`,
     },
   };
 }

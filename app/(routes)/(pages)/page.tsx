@@ -15,13 +15,13 @@ export const metadata: Metadata = {
   description: 'Welcome to Swami Vivekananda Govt College, Dalauda. A premier institution dedicated to excellence in education and character development. Discover our academic programs, facilities, and campus life.',
   keywords: 'college, education, dalauda, government college, academic programs',
   alternates: {
-    canonical: 'https://svcdalauda.amardeep.space/',
+    canonical: 'https://svgcdalauda.in/',
   },
   openGraph: {
     title: 'Swami Vivekananda Govt College, Dalauda',
     description: 'Premier educational institution in Dalauda committed to excellence',
     type: 'website',
-    url: 'https://svcdalauda.amardeep.space/',
+    url: 'https://svgcdalauda.in/',
   },
 };
 
