@@ -7,7 +7,7 @@ const BASE_URL = 'https://svgcdalauda.in'
 // routes have a stable lastModified across builds. Fallback to epoch.
 const DEPLOY_TIMESTAMP = process.env.DEPLOY_TIMESTAMP
   ? new Date(process.env.DEPLOY_TIMESTAMP)
-  : new Date(0)
+  : new Date()
 
 const safeDate = (date?: Date | string | null): Date => {
   if (date === undefined || date === null) return new Date()
@@ -23,7 +23,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/',
     '/about',
     '/faculty',
-    '/posts'
+    '/posts',
+    '/contact'
   ].map((route) => ({
     url: `${BASE_URL}${route}`,
     lastModified: DEPLOY_TIMESTAMP,

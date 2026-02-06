@@ -5,7 +5,7 @@ import { ModeToggle } from "../ui/theme-switcher";
 const HeroSection = () => {
     return (
         <section
-            className="relative w-full min-h-[75dvh] overflow-hidden bg-cover bg-center bg-no-repeat"
+            className="relative w-full min-h-[65vh] overflow-hidden bg-cover bg-center bg-no-repeat"
             style={{ backgroundImage: "url('/assets/background02.png')" }}
         >
             {/* Background overlay */}
@@ -14,7 +14,7 @@ const HeroSection = () => {
             />
 
             {/* CONTENT WRAPPER */}
-            <div className="relative mx-auto flex min-h-[75dvh] items-center justify-between px-6 lg:px-12">
+            <div className="relative mx-auto flex min-h-[65vh] items-center justify-between px-6 lg:px-12">
 
                 {/* IMAGE — BACK LAYER ON SMALL/MD */}
                 <div
@@ -28,11 +28,11 @@ const HeroSection = () => {
                     <Image
                         src="/assets/vivekananda02.png"
                         alt="Swami Vivekananda"
-                        width={500}
-                        height={500}
+                        width={350}
+                        height={350}
                         priority
                         className="
-                            h-full max-h-[75dvh]
+                            h-full max-h-[65vh]
                             w-auto object-contain
                             opacity-95
                             lg:opacity-100
