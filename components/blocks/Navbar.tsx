@@ -78,10 +78,8 @@ const Navbar = ({
     },
   ],
   mobileExtraLinks = [
-    { name: "Press", url: "#" },
-    { name: "Contact", url: "#" },
-    { name: "Imprint", url: "#" },
-    { name: "Sitemap", url: "#" },
+    { name: "Contact", url: "/contact" },
+    { name: "Sitemap", url: "/sitemap.xml" },
   ],
   auth = {
     login: { text: "Admin Portal", url: "/admin" },
