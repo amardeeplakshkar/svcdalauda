@@ -3,8 +3,10 @@ import React from 'react'
 import { Button } from '../ui/button'
 import { DepartmentDuoIcon } from './Icons'
 import Link from 'next/link'
+import { useIntlayer } from 'next-intlayer/server'
 
 const CampusFacilities = () => {
+    const content = useIntlayer('campusFacilities')
     return (
         <section className="py-8 md:py-12">
             <div className="container mx-auto">
@@ -15,37 +17,16 @@ const CampusFacilities = () => {
                             <div className="flex items-center gap-3 mb-4">
                                 <DepartmentDuoIcon color="gold" size={35} />
                                 <h2 className="font-serif text-2xl md:text-3xl font-bold text-foreground">
-                                    Campus Facilities
+                                    {content.title}
                                 </h2>
                             </div>
                             <p className="text-muted-foreground mb-8">
-                                Modern and well-equipped facilities for an enriched learning experience.
+                                {content.description}
                             </p>
 
                             <div className="space-y-5">
-                                {[
-                                    {
-                                        title: "Library",
-                                        description: "A vast collection of books, journals, and digital resources for academic research.",
-                                        isNew: true,
-                                    },
-                                    {
-                                        title: "Laboratories",
-                                        description: "State-of-the-art science and computer labs with modern equipment.",
-                                        isNew: false,
-                                    },
-                                    {
-                                        title: "Sports Ground",
-                                        description: "Spacious grounds for various sports activities and physical education.",
-                                        isNew: false,
-                                    },
-                                    {
-                                        title: "Computer Lab",
-                                        description: "Fully equipped computer lab with high-speed internet connectivity.",
-                                        isNew: false,
-                                    },
-                                ].map((facility) => (
-                                    <div key={facility.title} className="flex items-start gap-3">
+                                {content.facilities.map((facility, i) => (
+                                    <div key={i} className="flex items-start gap-3">
                                         <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center mt-0.5 flex-shrink-0">
                                             <Check className="w-3 h-3 text-primary" />
                                         </div>
@@ -65,7 +46,7 @@ const CampusFacilities = () => {
                             </div>
                             <Button asChild variant="default" size="lg" className="mt-8">
                                 <Link href="/about">
-                                    View All Notices
+                                    {content.viewAllNotices}
                                     <ArrowRight className="w-4 h-4" />
                                 </Link>
                             </Button>

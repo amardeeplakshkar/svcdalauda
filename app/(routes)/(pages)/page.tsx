@@ -1,4 +1,4 @@
-import { Metadata } from 'next';
+import { Metadata, NextPage } from 'next';
 
 import CampusFacilities from '@/components/core/CampusFacilities'
 import Container from '@/components/core/Container'
@@ -9,19 +9,20 @@ import Notices from '@/components/core/Notices'
 import { PrincipalMessage02 } from '@/components/core/PrincipalMessage'
 import QuickLinks from '@/components/core/QuickLinks'
 import StudentResources from '@/components/core/StudentResources';
+import { getLocale, IntlayerServerProvider } from 'next-intlayer/server';
 
 export const metadata: Metadata = {
   title: 'Swami Vivekananda Govt College, Dalauda',
   description: 'Welcome to Swami Vivekananda Govt College, Dalauda. A premier institution dedicated to excellence in education and character development. Discover our academic programs, facilities, and campus life.',
   keywords: 'college, education, dalauda, government college, academic programs',
   alternates: {
-    canonical: 'https://svgcdalauda.in/',
+    canonical: 'https://www.svgcdalauda.in/',
   },
   openGraph: {
     title: 'Swami Vivekananda Govt College, Dalauda',
     description: 'Premier educational institution in Dalauda committed to excellence',
     type: 'website',
-    url: 'https://svgcdalauda.in/',
+    url: 'https://www.svgcdalauda.in/',
   },
 };
 
@@ -46,4 +47,14 @@ const App = () => {
   )
 }
 
-export default App
+const Page: NextPage = async () => {
+  const locale = await getLocale();
+
+  return (
+    <IntlayerServerProvider locale={locale}>
+      <App/>
+    </IntlayerServerProvider>
+  );
+};
+
+export default Page;

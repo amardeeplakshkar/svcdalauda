@@ -2,8 +2,10 @@ import React from 'react'
 import { BellDuoIcon, DepartmentDuoIcon, MailDuoIcon, CalenderDuoIcon } from './Icons'
 import { Separator } from '../ui/separator'
 import Link from 'next/link'
+import { useIntlayer } from 'next-intlayer/server'
 
 const QuickLinks = () => {
+  const content = useIntlayer("quickLinks")
   return (
     <nav className="bg-theme-500">
       <div className="mx-auto py-4 grid grid-cols-2 md:grid-cols-4">
@@ -15,7 +17,7 @@ const QuickLinks = () => {
           }}
         >
           <DepartmentDuoIcon color="gold" size={35} />
-          <span>Departments</span>
+          <span>{content.departments}</span>
         </div>
 
         {/* ITEM 2 */}
@@ -25,7 +27,7 @@ const QuickLinks = () => {
           }}
         >
           <CalenderDuoIcon color="gold" size={35} />
-          <span>Calendar</span>
+          <span>{content.calendar}</span>
         </div>
 
         <Separator className='bg-yellow-300/40 my-1 self-center md:sr-only' />
@@ -39,7 +41,7 @@ const QuickLinks = () => {
           }}
         >
           <BellDuoIcon color="gold" size={35} />
-          <span>Notices</span>
+          <span>{content.notices}</span>
         </Link>
 
         {/* ITEM 4 */}
@@ -49,7 +51,7 @@ const QuickLinks = () => {
           }}
         >
           <MailDuoIcon color="gold" size={35} />
-          <span>Contact Us</span>
+          <span>{content.contactUs}</span>
         </Link>
 
       </div>

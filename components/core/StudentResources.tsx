@@ -1,5 +1,6 @@
 'use client'
 
+import { useIntlayer } from 'next-intlayer';
 import React, { JSX, useState } from 'react'
 import { IconType } from 'react-icons/lib';
 import { MdAccountBalance, MdContactSupport, MdDescription, MdDevices, MdDownload, MdGrade, MdInfo, MdLink, MdMenuBook, MdOpenInNew, MdPalette, MdPayment, MdPayments, MdPsychology, MdReceiptLong, MdSchool, MdScience } from 'react-icons/md';
@@ -9,21 +10,21 @@ const portals = [
         "title": "Vikram Results",
         "subtitle": "University Scorecards",
         "href": "#",
-        "icon": <MdSchool/>,
+        "icon": <MdSchool />,
         "accent": "primary"
     },
     {
         "title": "Scholarship 2.0",
         "subtitle": "MP State Portal",
         "href": "#",
-        "icon": <MdAccountBalance/>,
+        "icon": <MdAccountBalance />,
         "accent": "primary"
     },
     {
         "title": "E-Pravesh Port",
         "subtitle": "Admission Portal",
         "href": "#",
-        "icon": <MdReceiptLong/>,
+        "icon": <MdReceiptLong />,
         "accent": "primary"
     }
 ]
@@ -102,9 +103,9 @@ const syllabusData = {
 };
 
 const ICONS: Record<IconKey, IconType> = {
-  MdSchool,
-  MdAccountBalance,
-  MdReceiptLong,
+    MdSchool,
+    MdAccountBalance,
+    MdReceiptLong,
 };
 
 
@@ -118,7 +119,7 @@ const YEARS = [
 
 type YearKey = "first_year" | "second_year" | "third_year";
 export default function StudentResources() {
-
+    const content = useIntlayer('studentResourcesSection')
     const [year, setYear] = useState<YearKey>("first_year");
 
     const data = syllabusData[year];
@@ -126,9 +127,9 @@ export default function StudentResources() {
         <main className="w-full">
             <div className="flex flex-wrap justify-between items-end gap-6 mb-12">
                 <div className="flex min-w-72 flex-col gap-3">
-                    <h1 className="text-primary dark:text-white quote-text  text-4xl lg:text-5xl font-black leading-tight tracking-tight">Student Resources</h1>
-                     <div className="h-1 w-24 bg-secondary rounded-full"></div>
-                    <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl">Access NEP 2020 syllabus links, fee structures, and essential university portals for the current academic session.</p>
+                    <h1 className="text-primary dark:text-white quote-text  text-4xl lg:text-5xl font-black leading-tight tracking-tight">{content.header.title}</h1>
+                    <div className="h-1 w-24 bg-secondary rounded-full"></div>
+                    <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl">{content.header.description}</p>
                 </div>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
@@ -213,7 +214,7 @@ export default function StudentResources() {
                                 </span>
                             </div>
                             <p className="text-[11px] text-gray-500">
-                                All syllabus buttons lead to the official M.P. Higher Education Portal.
+                                {content.nep.note}
                             </p>
                         </div>
 
@@ -224,7 +225,7 @@ export default function StudentResources() {
                     <div className="bg-white dark:bg-gray-800 rounded-xl p-6 soft-card-shadow border-t-4 border-secondary h-full flex flex-col">
                         <div className="flex items-center gap-3 mb-6">
                             <span className="material-symbols-outlined text-secondary"><MdPayments /></span>
-                            <h2 className="text-xl font-bold text-primary dark:text-white">Fee Structure</h2>
+                            <h2 className="text-xl font-bold text-primary dark:text-white">{content.feeStructure.title}</h2>
                         </div>
                         <div className="overflow-hidden border border-gray-100 dark:border-gray-700 rounded-lg flex-grow mb-6">
                             <table className="w-full text-left border-collapse text-xs">
@@ -236,37 +237,24 @@ export default function StudentResources() {
                                     </tr>
                                 </thead>
                                 <tbody className="dark:bg-gray-800">
-                                    <tr className="border-b border-gray-50 dark:border-gray-700">
-                                        <td className="p-3">UG - 1st Year</td>
-                                        <td className="p-3">General/OBC</td>
-                                        <td className="p-3 text-right font-medium">₹2,450</td>
-                                    </tr>
-                                    <tr className="border-b border-gray-50 dark:border-gray-700 bg-gray-50/50 dark:bg-gray-900/50">
-                                        <td className="p-3">UG - 1st Year</td>
-                                        <td className="p-3">SC/ST/Girl</td>
-                                        <td className="p-3 text-right font-medium">₹1,120</td>
-                                    </tr>
-                                    <tr className="border-b border-gray-50 dark:border-gray-700">
-                                        <td className="p-3">UG - 2nd/3rd</td>
-                                        <td className="p-3">General/OBC</td>
-                                        <td className="p-3 text-right font-medium">₹2,100</td>
-                                    </tr>
-                                    <tr className="border-b border-gray-50 dark:border-gray-700 bg-gray-50/50 dark:bg-gray-900/50">
-                                        <td className="p-3">UG - 2nd/3rd</td>
-                                        <td className="p-3">SC/ST/Girl</td>
-                                        <td className="p-3 text-right font-medium">₹980</td>
-                                    </tr>
+                                    {content.feeStructure.rows.map((data, i) =>
+                                        <tr key={i} className="border-b border-gray-50 dark:border-gray-700">
+                                            <td className="p-3">{data.year}</td>
+                                            <td className="p-3">{data.category}</td>
+                                            <td className="p-3 text-right font-medium">{data.fee}</td>
+                                        </tr>
+                                    )}
                                 </tbody>
                             </table>
                         </div>
                         {/* TODO: Implement downloadFeeSchedule handler - update to fetch from /api/fee-schedule or provide direct PDF URL */}
-                        <button 
+                        <button
                             disabled
                             title="PDF download will be implemented"
                             className="w-full py-3 bg-primary/50 text-white rounded-lg font-bold text-sm cursor-not-allowed flex items-center justify-center gap-2 mt-auto opacity-60"
                         >
                             <span className="material-symbols-outlined text-sm"><MdDownload /></span>
-                            Full Fee Schedule (PDF)
+                            {content.feeStructure.buttonLabel}
                         </button>
                     </div>
                 </div>
@@ -274,7 +262,7 @@ export default function StudentResources() {
                     <div className="bg-white dark:bg-gray-800 rounded-xl p-6 soft-card-shadow border-t-4 border-primary h-full">
                         <div className="flex items-center gap-3 mb-6">
                             <span className="material-symbols-outlined text-primary"><MdLink /></span>
-                            <h2 className="text-xl font-bold text-primary dark:text-white">Results &amp; Portals</h2>
+                            <h2 className="text-xl font-bold text-primary dark:text-white">{content.portalHeader}</h2>
                         </div>
                         <div className="flex flex-col gap-4">
                             {portals.map((item) => (
@@ -294,27 +282,27 @@ export default function StudentResources() {
             <div className="mt-12 bg-primary/5 dark:bg-gray-800/50 rounded-2xl p-8 border border-primary/10 flex flex-col md:flex-row items-center justify-between gap-6">
                 <div className="flex items-center gap-4">
                     <div className="size-14 rounded-full bg-white dark:bg-gray-700 flex items-center justify-center text-primary shadow-sm border border-primary/5">
-                        <span className="material-symbols-outlined text-3xl"><MdContactSupport/></span>
+                        <span className="material-symbols-outlined text-3xl"><MdContactSupport /></span>
                     </div>
                     <div>
-                        <h3 className="text-lg font-bold text-primary dark:text-white">Need help finding something?</h3>
-                        <p className="text-sm text-gray-600 dark:text-gray-400">Our administrative office is open Mon-Sat, 9:00 AM to 5:00 PM for physical inquiries.</p>
+                        <h3 className="text-lg font-bold text-primary dark:text-white">{content.help.title}</h3>
+                        <p className="text-sm text-gray-600 dark:text-gray-400">{content.help.description}</p>
                     </div>
                 </div>
                 <div className="flex gap-4">
-                    <button 
+                    <button
                         onClick={() => window.location.href = 'mailto:info@svgcdalauda.ac.in'}
                         className="px-6 py-2 border-2 border-primary text-primary rounded-lg font-bold text-sm hover:bg-primary hover:text-white transition-all"
                         aria-label="Email office"
                     >
-                        Email Office
+                        {content.help.emailLabel}
                     </button>
-                    <button 
+                    <button
                         onClick={() => window.location.href = 'tel:+919999999999'}
                         className="px-6 py-2 bg-secondary text-white rounded-lg font-bold text-sm hover:brightness-110 transition-all shadow-md shadow-secondary/20"
                         aria-label="Call desk"
                     >
-                        Call Desk
+                        {content.help.callLabel}
                     </button>
                 </div>
             </div>
@@ -369,10 +357,10 @@ const FoundationItem = ({ icon, title, hi, link }: {
 
 type PortalCardProps = {
     title: string;
-  subtitle: string;
-  href: string;
-  icon: React.ReactNode;   // 👈 important
-  accent: string;
+    subtitle: string;
+    href: string;
+    icon: React.ReactNode;   // 👈 important
+    accent: string;
 };
 
 
@@ -392,7 +380,7 @@ export function PortalCard({
         accent === "saffron"
             ? "text-secondary"
             : "text-primary";
-    
+
     const accentHoverText =
         accent === "saffron"
             ? "group-hover:text-secondary"

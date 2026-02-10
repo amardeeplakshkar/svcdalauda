@@ -1,7 +1,7 @@
 import { storage } from '@/lib/storage'
 import { MetadataRoute } from 'next'
 
-const BASE_URL = 'https://svgcdalauda.in'
+const BASE_URL = 'https://www.svgcdalauda.in'
 
 // Use an environment-provided deploy timestamp when available so static
 // routes have a stable lastModified across builds. Fallback to epoch.

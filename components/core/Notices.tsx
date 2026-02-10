@@ -2,12 +2,14 @@
 
 import { usePostList } from '@/hooks/use-posts';
 import { Bell } from 'lucide-react'
+import { useIntlayer } from 'next-intlayer';
 import Link from 'next/link';
 import { useState } from 'react'
 import { MdArrowRightAlt, MdHistory, MdInfo } from 'react-icons/md'
 import ReactMarkdown from 'react-markdown'
 
 const Notices = () => {
+    const content = useIntlayer("notices")
     const { data: posts, isLoading } = usePostList();
     type FilterType = "all" | "blog" | "announcement" | "notice";
 
@@ -54,10 +56,10 @@ const Notices = () => {
                             <span className="material-symbols-outlined text-primary"><Bell /></span>
                             <div className="ornament"></div>
                         </div>
-                        <h2 className="text-4xl md:text-5xl quote-text font-bold text-primary dark:text-gold mb-2">Announcements</h2>
+                        <h2 className="text-4xl md:text-5xl quote-text font-bold text-primary dark:text-gold mb-2">{content.title}</h2>
                         <div className="h-1 w-24 bg-secondary mx-auto rounded-full"></div>
                         <p className="text-primary/60 dark:text-stone-400 max-w-2xl mx-auto italic font-display text-lg">
-                            Keeping you informed on your path to excellence.
+                            {content.subTitle}
                         </p>
                     </div>
 
@@ -110,7 +112,7 @@ const Notices = () => {
 
                     <div className="bg-card-light dark:bg-stone-900 rounded-xl border border-primary/10 shadow-xl shadow-stone-200/50 dark:shadow-none overflow-hidden flex flex-col h-[600px]">
                         <div className="p-4 bg-primary/5 dark:bg-white/5 border-b border-primary/10 flex justify-between items-center">
-                            <span className="text-xs font-bold text-primary dark:text-accent-gold uppercase tracking-widest">Recent Updates</span>
+                            <span className="text-xs font-bold text-primary dark:text-accent-gold uppercase tracking-widest">{content.recentUpdates}</span>
                         </div>
                         <div className="flex-1 overflow-y-auto custom-scrollbar p-6 space-y-4">
                             {isLoading && (
@@ -119,7 +121,7 @@ const Notices = () => {
 
                             {!isLoading && filteredPosts.length === 0 && (
                                 <p className="text-center text-sm text-stone-500">
-                                    {activeFilter === 'all' ? 'No posts available' : `No ${activeFilter} available`}
+                                    {activeFilter === 'all' ? content.noNotices : `No ${activeFilter} available`}
                                 </p>
                             )}
 
@@ -174,10 +176,10 @@ const Notices = () => {
                         <div className="p-6 bg-primary text-white flex justify-between items-center">
                             <div className="flex items-center gap-2">
                                 <span className="material-symbols-outlined text-sm"><MdHistory /></span>
-                                <span className="text-sm font-semibold tracking-wide">Looking for older records?</span>
+                                <span className="text-sm font-semibold tracking-wide">{content.olderRecords}</span>
                             </div>
                             <Link href='/posts' className="flex items-center gap-1 text-sm font-bold bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition-colors">
-                                View Notice Archive
+                                {content.viewNoticeArchive}
                                 <span className="material-symbols-outlined text-sm"><MdArrowRightAlt /></span>
                             </Link>
                         </div>

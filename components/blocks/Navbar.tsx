@@ -24,6 +24,7 @@ import {
 } from "@/components/ui/sheet";
 import { JSX } from "react";
 import Link from "next/link";
+import { Component } from "../core/LanguageSwitcher";
 
 interface MenuItem {
   title: string;
@@ -107,7 +108,8 @@ const Navbar = ({
               </NavigationMenu>
             </div>
           </div>
-          <div className="flex gap-2">
+          <div className="flex gap-2 items-center">
+            <Component/>
             <Button asChild variant="hero" className="hover:translate-y-0">
               <a href={auth.login.url}>{auth.login.text}</a>
             </Button>
@@ -166,6 +168,7 @@ const Navbar = ({
                     </div>
                   </div>
                   <div className="flex flex-col gap-3">
+            <Component/>
                     <Button asChild variant="hero" className="hover:translate-y-0">
                       <Link href={auth.login.url}>{auth.login.text}</Link>
                     </Button>

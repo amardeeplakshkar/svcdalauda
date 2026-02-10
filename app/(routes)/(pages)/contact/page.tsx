@@ -9,13 +9,13 @@ export const metadata: Metadata = {
   description: 'Get in touch with Swami Vivekananda Govt College. Find our contact information, address, phone, email, and reach out to us with your queries.',
   keywords: 'contact, phone, email, location, address, dalauda',
   alternates: {
-    canonical: 'https://svgcdalauda.in/contact',
+    canonical: 'https://www.svgcdalauda.in/contact',
   },
   openGraph: {
     title: 'Contact Us - Swami Vivekananda Govt College',
     description: 'Reach out to us with your questions and feedback',
     type: 'website',
-    url: 'https://svgcdalauda.in/contact',
+    url: 'https://www.svgcdalauda.in/contact',
   },
 };
 

@@ -9,13 +9,13 @@ export async function generateMetadata({
     title: 'Post - Swami Vivekananda Govt College',
     description: 'Read the latest post from Swami Vivekananda Govt College. Stay informed with campus news, announcements, and updates.',
     alternates: {
-      canonical: `https://svgcdalauda.in/posts/${params.id}`,
+      canonical: `https://www.svgcdalauda.in/posts/${params.id}`,
     },
     openGraph: {
       title: 'Post - Swami Vivekananda Govt College',
       description: 'Campus news and updates',
       type: 'article',
-      url: `https://svgcdalauda.in/posts/${params.id}`,
+      url: `https://www.svgcdalauda.in/posts/${params.id}`,
     },
   };
 }

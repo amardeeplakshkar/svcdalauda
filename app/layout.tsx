@@ -4,6 +4,11 @@ import "./globals.css";
 import AppWrapper from "@/components/provider/AppWrapper";
 import { Analytics } from '@vercel/analytics/next';
 
+import { IntlayerClientProvider, LocalPromiseParams } from "next-intlayer";
+import { getHTMLTextDir, getIntlayer } from "intlayer";
+import { getLocale } from "next-intlayer/server";
+export { generateStaticParams } from "next-intlayer";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -22,9 +27,9 @@ export const metadata: Metadata = {
     "Official website of Swami Vivekananda Government College Dalauda (SVGC Dalauda), Madhya Pradesh. Explore NEP 2020 syllabus, admissions, results, scholarships, academic programs, campus facilities, and student resources.",
 
   icons: {
-    icon: "/assets/logo.jpg",         
-    shortcut: "/assets/logo.jpg",     
-    apple: "/assets/logo.jpg"         
+    icon: "/assets/logo.jpg",
+    shortcut: "/assets/logo.jpg",
+    apple: "/assets/logo.jpg"
   },
   keywords: [
     "svgcdalauda",
@@ -44,7 +49,7 @@ export const metadata: Metadata = {
   ],
 
   alternates: {
-    canonical: "https://svgcdalauda.in/",
+    canonical: "https://www.svgcdalauda.in/",
   },
 
   openGraph: {
@@ -53,27 +58,33 @@ export const metadata: Metadata = {
     description:
       "Swami Vivekananda Government College Dalauda is a premier government college in Madhya Pradesh offering quality education, NEP 2020 curriculum, and student-focused academic programs.",
     type: "website",
-    url: "https://svgcdalauda.in/",
+    url: "https://www.svgcdalauda.in/",
     siteName: "SVGC Dalauda",
   },
+
+  robots: "index, follow"
 };
 
 
-export default function RootLayout({
+const RootLayout = async ({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) {
+}>) => {
+  const locale = await getLocale();
+
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <AppWrapper>
-          {children}
-        </AppWrapper>
-        <Analytics/>
-      </body>
+    <html lang={locale} dir={getHTMLTextDir(locale)} suppressHydrationWarning>
+      <IntlayerClientProvider defaultLocale={locale}>
+        <body>
+          <AppWrapper>
+            {children}
+          </AppWrapper>
+          <Analytics />
+        </body>
+      </IntlayerClientProvider>
     </html>
   );
-}
+};
+
+export default RootLayout;

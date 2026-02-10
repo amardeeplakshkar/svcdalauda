@@ -1,29 +1,31 @@
+import { useIntlayer } from 'next-intlayer/server'
 import React from 'react'
 import { MdArrowForward } from 'react-icons/md'
 
 const Gallary = () => {
+    const content = useIntlayer('gallerySection')
     return (
         <div className="bg-background-light dark:bg-background-dark font-sans text-[#181211] dark:text-[#fbf9f9] min-h-screen">
             <div className="layout-container flex h-full grow flex-col">
                 <main className="flex-1">
                     <section className="px-4 py-12 lg:py-20">
                         <div className="max-w-7xl mx-auto">
-                            <h1 className="text-4xl text-center md:text-5xl quote-text font-bold text-primary dark:text-gold mb-2">Moments at SVGC Dalauda</h1>
+                            <h1 className="text-4xl text-center md:text-5xl quote-text font-bold text-primary dark:text-gold mb-2">{content.title}</h1>
                             <div className="h-1 w-24 bg-secondary mx-auto rounded-full"></div>
                             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-                                <p className="text-lg text-primary/70 font-display italic">Capturing the spirit of excellence, culture, and community within our hallowed halls.</p>
+                                <p className="text-lg text-primary/70 font-display italic">{content.subtitle}</p>
                                 <button className="flex justify-center items-center gap-2 px-6 py-3 border-2 border-primary text-primary font-bold rounded-lg hover:bg-primary hover:text-white transition-all group">
-                                    <span>View Full Archive</span>
+                                    <span>{content.viewArchive}</span>
                                     <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform"><MdArrowForward/></span>
                                 </button>
                             </div>
                             <div className="border-b border-primary/10 mb-8 overflow-x-auto">
                                 <div className="flex gap-10 whitespace-nowrap min-w-max">
-                                    <a className="pb-4 border-b-2 border-primary text-primary font-bold text-sm tracking-wider uppercase" href="#">All Collections</a>
-                                    <a className="pb-4 border-b-2 border-transparent text-primary/50 hover:text-primary font-bold text-sm tracking-wider uppercase transition-all" href="#">Cultural Events</a>
-                                    <a className="pb-4 border-b-2 border-transparent text-primary/50 hover:text-primary font-bold text-sm tracking-wider uppercase transition-all" href="#">Sports Arena</a>
-                                    <a className="pb-4 border-b-2 border-transparent text-primary/50 hover:text-primary font-bold text-sm tracking-wider uppercase transition-all" href="#">Campus Architecture</a>
-                                    <a className="pb-4 border-b-2 border-transparent text-primary/50 hover:text-primary font-bold text-sm tracking-wider uppercase transition-all" href="#">Workshops &amp; Seminars</a>
+                                    <a className="pb-4 border-b-2 border-primary text-primary font-bold text-sm tracking-wider uppercase" href="#">{content.tabs.all}</a>
+                                    <a className="pb-4 border-b-2 border-transparent text-primary/50 hover:text-primary font-bold text-sm tracking-wider uppercase transition-all" href="#">{content.tabs.cultural}</a>
+                                    <a className="pb-4 border-b-2 border-transparent text-primary/50 hover:text-primary font-bold text-sm tracking-wider uppercase transition-all" href="#">{content.tabs.sports}</a>
+                                    <a className="pb-4 border-b-2 border-transparent text-primary/50 hover:text-primary font-bold text-sm tracking-wider uppercase transition-all" href="#">{content.tabs.campus}</a>
+                                    <a className="pb-4 border-b-2 border-transparent text-primary/50 hover:text-primary font-bold text-sm tracking-wider uppercase transition-all" href="#">{content.tabs.workshops}</a>
                                 </div>
                             </div>
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
