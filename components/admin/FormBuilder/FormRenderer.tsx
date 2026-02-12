@@ -31,6 +31,8 @@ export function FormRenderer({
   const [uploadProgress, setUploadProgress] = useState<Record<string, boolean>>({});
   const [submissionError, setSubmissionError] = useState<string | null>(null);
 
+  const isUploading = Object.values(uploadProgress).some(Boolean);
+
   const handleChange = (id: string, value: any) => {
     setFormData((prev) => ({ ...prev, [id]: value }));
     if (errors[id]) {
@@ -303,7 +305,7 @@ export function FormRenderer({
         <div className="pt-4">
           <Button
             type="submit"
-            disabled={isSubmitting}
+            disabled={isSubmitting || isUploading}
             className="w-full h-12 text-base font-semibold shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transition-all"
           >
             {isSubmitting ? (
