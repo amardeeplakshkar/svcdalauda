@@ -1,9 +1,9 @@
-import { Metadata } from 'next';
+import { Metadata, NextPage } from 'next';
 import { Label } from '@/components/ui/label'
 import { Clock, LocateIcon, Mail, Phone, School } from 'lucide-react'
 import React from 'react'
 import { MdSend } from 'react-icons/md'
-import { useIntlayer } from 'next-intlayer/server';
+import { getLocale, IntlayerServerProvider, useIntlayer } from 'next-intlayer/server';
 
 export const metadata: Metadata = {
   title: 'Contact Us - Swami Vivekananda Govt College',
@@ -172,4 +172,15 @@ const ContactPage = () => {
   );
 };
 
-export default ContactPage;
+
+const Page: NextPage = async () => {
+    const locale = await getLocale();
+
+    return (
+        <IntlayerServerProvider locale={locale}>
+            <ContactPage />
+        </IntlayerServerProvider>
+    );
+};
+
+export default Page;
