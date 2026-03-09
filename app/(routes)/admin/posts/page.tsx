@@ -227,7 +227,7 @@ function PostDialog({
                 <FormItem>
                   <FormLabel>Content (MARKDOWN supported)</FormLabel>
                   <FormControl>
-                    <Textarea {...field} className="min-h-[200px] font-mono text-sm" placeholder="Write your content here..." />
+                    <Textarea rows={10} {...field} className="min-h-[200px] max-h-[50dvh] font-mono text-sm" placeholder="Write your content here..." />
                   </FormControl>
                   <p className="text-xs text-muted-foreground">
                     Tip: You can use basic MARKDOWN for formatting.
