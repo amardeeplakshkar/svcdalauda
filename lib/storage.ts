@@ -16,7 +16,9 @@ import {
   faculty,
   posts
 } from "@/shared/schema";
-import { eq, desc } from "drizzle-orm";
+import { eq, asc, desc } from "drizzle-orm";
+
+import { galleryImages, type GalleryImage, type InsertGalleryImage, type GalleryCategory } from "@/shared/schema";
 
 export interface IStorage {
   getForms(): Promise<Form[]>;
@@ -25,7 +27,8 @@ export interface IStorage {
   updateForm(id: number, updates: UpdateFormRequest): Promise<Form>;
   createSubmission(submission: InsertSubmission): Promise<Submission>;
   getSubmissions(formId: number): Promise<Submission[]>;
-   // Faculty
+  deleteForm(id: number): Promise<void>;
+  // Faculty
   getFacultyList(): Promise<Faculty[]>;
   getFaculty(id: number): Promise<Faculty | undefined>;
   createFaculty(faculty: CreateFacultyRequest): Promise<Faculty>;
@@ -38,6 +41,13 @@ export interface IStorage {
   createPost(post: CreatePostRequest): Promise<Post>;
   updatePost(id: number, updates: UpdatePostRequest): Promise<Post>;
   deletePost(id: number): Promise<void>;
+
+  getGalleryImages(category?: GalleryCategory): Promise<GalleryImage[]>;
+  getGalleryImage(id: number): Promise<GalleryImage | undefined>;
+  createGalleryImage(image: InsertGalleryImage): Promise<GalleryImage>;
+  updateGalleryImage(id: number, updates: Partial<InsertGalleryImage>): Promise<GalleryImage | undefined>;
+  deleteGalleryImage(id: number): Promise<void>;
+  reorderGalleryImages(order: { id: number; displayOrder: number }[]): Promise<void>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -78,6 +88,10 @@ export class DatabaseStorage implements IStorage {
       .from(submissions)
       .where(eq(submissions.formId, formId))
       .orderBy(desc(submissions.submittedAt));
+  }
+
+  async deleteForm(id: number): Promise<void> {
+    await db.delete(forms).where(eq(forms.id, id));
   }
 
   // Faculty Operations
@@ -135,6 +149,49 @@ export class DatabaseStorage implements IStorage {
 
   async deletePost(id: number): Promise<void> {
     await db.delete(posts).where(eq(posts.id, id));
+  }
+
+  async getGalleryImages(category?: GalleryCategory): Promise<GalleryImage[]> {
+    if (category && category !== "all") {
+      return await db
+        .select()
+        .from(galleryImages)
+        .where(eq(galleryImages.category, category))
+        .orderBy(asc(galleryImages.displayOrder));
+    }
+    return await db.select().from(galleryImages).orderBy(asc(galleryImages.displayOrder));
+  }
+
+  async getGalleryImage(id: number): Promise<GalleryImage | undefined> {
+    const [image] = await db.select().from(galleryImages).where(eq(galleryImages.id, id));
+    return image;
+  }
+
+  async createGalleryImage(image: InsertGalleryImage): Promise<GalleryImage> {
+    const [created] = await db.insert(galleryImages).values(image).returning();
+    return created;
+  }
+
+  async updateGalleryImage(id: number, updates: Partial<InsertGalleryImage>): Promise<GalleryImage | undefined> {
+    const [updated] = await db
+      .update(galleryImages)
+      .set(updates)
+      .where(eq(galleryImages.id, id))
+      .returning();
+    return updated;
+  }
+
+  async deleteGalleryImage(id: number): Promise<void> {
+    await db.delete(galleryImages).where(eq(galleryImages.id, id));
+  }
+
+  async reorderGalleryImages(order: { id: number; displayOrder: number }[]): Promise<void> {
+    // Drizzle doesn't support bulk update natively — run in parallel
+    await Promise.all(
+      order.map(({ id, displayOrder }) =>
+        db.update(galleryImages).set({ displayOrder }).where(eq(galleryImages.id, id))
+      )
+    );
   }
 }
 

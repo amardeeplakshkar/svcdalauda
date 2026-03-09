@@ -46,6 +46,11 @@ const data = {
       url: "/admin/form",
       icon: Form,
     },
+    {
+      title: "Gallery",
+      url: "/admin/gallery",
+      icon: Form,
+    },
   ],
   navSecondary: [
     {

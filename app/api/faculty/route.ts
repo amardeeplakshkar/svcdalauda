@@ -21,6 +21,7 @@ export async function GET() {
 export async function POST(request: Request) {
   const authError = await checkAuth();
   if (authError) return authError;
+
   try {
     const body = await request.json();
     const validatedData = insertFacultySchema.parse(body);
@@ -29,10 +30,9 @@ export async function POST(request: Request) {
   } catch (error) {
     if (error instanceof ZodError) {
       return NextResponse.json(
-        { 
-          error: "Validation error", 
-          message: error|| "Invalid input data",
-          details: error
+        {
+          error: "Validation error",
+          details: error.flatten().fieldErrors, // ✅ Fix: serialize properly, not raw ZodError
         },
         { status: 400 }
       );

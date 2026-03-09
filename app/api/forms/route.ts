@@ -11,38 +11,33 @@ export async function GET() {
     return NextResponse.json(forms);
   } catch (error) {
     console.error("Error fetching forms:", error);
-    return NextResponse.json(
-      { error: "Failed to fetch forms" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Failed to fetch forms" }, { status: 500 });
   }
 }
 
 export async function POST(req: NextRequest) {
   const authError = await checkAuth();
   if (authError) return authError;
+
   try {
     const body = await req.json();
     const input = api.forms.create.input.parse(body);
-
     const form = await storage.createForm(input);
-
     return NextResponse.json(
       api.forms.create.responses[201].parse(form),
       { status: 201 }
     );
-  } catch (err) {
-    if (err instanceof z.ZodError) {
+  } catch (error) {
+    if (error instanceof z.ZodError) {
       return NextResponse.json(
-        { message: err.message, field: "." },
+        {
+          error: "Validation error",
+          details: error.flatten().fieldErrors, // ✅ Fix: properly serialized
+        },
         { status: 400 }
       );
     }
-
-    console.error("CREATE FORM FAILED:", err);
-    return NextResponse.json(
-      { message: "Internal server error" },
-      { status: 500 }
-    );
+    console.error("CREATE FORM FAILED:", error);
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }

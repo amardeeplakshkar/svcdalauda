@@ -110,3 +110,30 @@ export type InsertSubmission = z.infer<typeof insertSubmissionSchema>;
 export type CreateFormRequest = InsertForm;
 export type UpdateFormRequest = Partial<InsertForm>;
 export type SubmitFormRequest = { data: Record<string, any> };
+
+
+
+export const GALLERY_CATEGORIES = ["all", "cultural", "sports", "campus", "workshops", "academic"] as const;
+export type GalleryCategory = (typeof GALLERY_CATEGORIES)[number];
+
+export const galleryImages = pgTable("gallery_images", {
+  id: serial("id").primaryKey(),
+  fileId: text("file_id").notNull(),               // ImageKit file ID (for future delete from IK if needed)
+  url: text("url").notNull(),                       // ImageKit delivery URL
+  title: text("title").notNull(),
+  description: text("description").notNull().default(""),
+  altText: text("alt_text").notNull(),
+  category: text("category", {
+    enum: ["all", "cultural", "sports", "campus", "workshops", "academic"],
+  }).notNull().default("all"),
+  displayOrder: integer("display_order").notNull().default(0),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const insertGalleryImageSchema = createInsertSchema(galleryImages).omit({
+  id: true,
+  createdAt: true,
+});
+
+export type GalleryImage = typeof galleryImages.$inferSelect;
+export type InsertGalleryImage = z.infer<typeof insertGalleryImageSchema>;
