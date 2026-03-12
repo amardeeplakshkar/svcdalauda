@@ -8,9 +8,6 @@ export async function generateMetadata({
   return {
     title: 'Form - Swami Vivekananda Govt College',
     description: 'Fill out the form from Swami Vivekananda Govt College. Submit your information securely for various college-related services and applications.',
-    alternates: {
-      canonical: `https://www.svgcdalauda.in/forms/${params.id}`,
-    },
     openGraph: {
       title: 'Form - Swami Vivekananda Govt College',
       description: 'College application and submission form',

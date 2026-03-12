@@ -1,10 +1,10 @@
 import { createMetadata } from "@/lib/seo";
 
 export const metadata = createMetadata({
-  title: "Campus News & Updates",
+  title: "Gallery",
 })
 
-export default function PostsLayout({
+export default function GalleryLayout({
   children,
 }: {
   children: React.ReactNode;

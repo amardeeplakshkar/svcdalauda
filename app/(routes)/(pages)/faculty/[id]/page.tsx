@@ -10,7 +10,7 @@ export default function FacultyDetail() {
     const params = useParams<{ id: string }>();
     const id = parseInt(params?.id || "0");
     const { data: faculty, isLoading } = useFaculty(id);
-
+    
     if (isLoading) {
         return (
             <div className="min-h-screen flex items-center justify-center">

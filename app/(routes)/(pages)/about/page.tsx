@@ -24,21 +24,11 @@ const coreValueIcons: Record<string, IconType> = {
 };
 
 import { getLocale, IntlayerServerProvider, useIntlayer } from 'next-intlayer/server';
+import { createMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-    title: 'About Us - Swami Vivekananda Govt College',
-    description: 'Learn about our history, heritage, vision, and mission. Discover what makes us a premier educational institution dedicated to character development and academic excellence.',
-    keywords: 'about, history, heritage, vision, mission, college, dalauda',
-    alternates: {
-        canonical: 'https://www.svgcdalauda.in/about',
-    },
-    openGraph: {
-        title: 'About Us - Swami Vivekananda Govt College',
-        description: 'History and heritage of our institution spanning nearly four decades',
-        type: 'website',
-        url: 'https://www.svgcdalauda.in/about',
-    },
-};
+export const metadata = createMetadata({
+  title: "About Us",
+})
 
 const AboutPage = () => {
     const content = useIntlayer('aboutInstitutionSection')

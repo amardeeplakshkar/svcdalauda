@@ -4,21 +4,11 @@ import { Clock, LocateIcon, Mail, Phone, School } from 'lucide-react'
 import React from 'react'
 import { MdSend } from 'react-icons/md'
 import { getLocale, IntlayerServerProvider, useIntlayer } from 'next-intlayer/server';
+import { createMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Contact Us - Swami Vivekananda Govt College',
-  description: 'Get in touch with Swami Vivekananda Govt College. Find our contact information, address, phone, email, and reach out to us with your queries.',
-  keywords: 'contact, phone, email, location, address, dalauda',
-  alternates: {
-    canonical: 'https://www.svgcdalauda.in/contact',
-  },
-  openGraph: {
-    title: 'Contact Us - Swami Vivekananda Govt College',
-    description: 'Reach out to us with your questions and feedback',
-    type: 'website',
-    url: 'https://www.svgcdalauda.in/contact',
-  },
-};
+export const metadata = createMetadata({
+  title: "Contact Us",
+})
 
 const ContactPage = () => {
   const content  = useIntlayer('contactPage');

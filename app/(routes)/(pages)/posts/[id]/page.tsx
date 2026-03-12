@@ -16,6 +16,7 @@ import remarkDirective from "remark-directive"
 import rehypeRaw from "rehype-raw"
 import { visit } from "unist-util-visit"
 import type { Components } from "react-markdown"
+import JsonLd from "@/components/core/JsonLd"
 
 // ─── Remark plugin ────────────────────────────────────────────────────────────
 // Converts :iframe[url]{title="..." height="500"} into:
@@ -47,7 +48,7 @@ function remarkIframeDirective() {
       }
 
 
-      const title  = node.attributes?.title  ?? "Embedded content"
+      const title = node.attributes?.title ?? "Embedded content"
       const height = node.attributes?.height ?? "500"
 
       if (!url) {
@@ -55,7 +56,7 @@ function remarkIframeDirective() {
       }
 
       const config = JSON.stringify({ url, title, height })
-      node.type  = "html"
+      node.type = "html"
       node.value = `<div class="ik-iframe" data-config='${config}'></div>`
 
       console.log("[iframe-directive] ✓ done:", node.value)
@@ -79,7 +80,7 @@ const ALLOWED_ORIGINS = [
 
 function IframeEmbed({ url, title, height }: { url: string; title: string; height: string }) {
   const [loaded, setLoaded] = useState(false)
-  const [error,  setError]  = useState(false)
+  const [error, setError] = useState(false)
 
   const isAllowed = ALLOWED_ORIGINS.some(o => url.includes(o))
 
@@ -141,7 +142,7 @@ function IframeEmbed({ url, title, height }: { url: string; title: string; heigh
 
 function CodeBlock({ children, className }: { children?: React.ReactNode; className?: string }) {
   const [copied, setCopied] = useState(false)
-  const code     = typeof children === "string" ? children : String(children ?? "")
+  const code = typeof children === "string" ? children : String(children ?? "")
   const language = className?.replace("language-", "") ?? "text"
 
   return (
@@ -184,7 +185,7 @@ const markdownComponents: Components = {
   ),
 
   strong: ({ children }) => <strong className="font-semibold text-foreground">{children}</strong>,
-  em:     ({ children }) => <em className="italic text-foreground/80">{children}</em>,
+  em: ({ children }) => <em className="italic text-foreground/80">{children}</em>,
 
   blockquote: ({ children }) => (
     <blockquote className="my-6 pl-5 border-l-4 border-primary/60 bg-primary/5 dark:bg-primary/10 py-3 pr-4 rounded-r-xl italic text-foreground/70">
@@ -216,12 +217,12 @@ const markdownComponents: Components = {
     </div>
   ),
 
-  table:  ({ children }) => <div className="my-6 overflow-x-auto rounded-xl border border-border shadow-sm"><table className="w-full text-sm">{children}</table></div>,
-  thead:  ({ children }) => <thead className="bg-muted/60 text-foreground font-semibold">{children}</thead>,
-  tbody:  ({ children }) => <tbody className="divide-y divide-border">{children}</tbody>,
-  tr:     ({ children }) => <tr className="hover:bg-muted/30 transition-colors">{children}</tr>,
-  th:     ({ children }) => <th className="px-4 py-3 text-left font-semibold text-foreground tracking-wide">{children}</th>,
-  td:     ({ children }) => <td className="px-4 py-3 text-muted-foreground">{children}</td>,
+  table: ({ children }) => <div className="my-6 overflow-x-auto rounded-xl border border-border shadow-sm"><table className="w-full text-sm">{children}</table></div>,
+  thead: ({ children }) => <thead className="bg-muted/60 text-foreground font-semibold">{children}</thead>,
+  tbody: ({ children }) => <tbody className="divide-y divide-border">{children}</tbody>,
+  tr: ({ children }) => <tr className="hover:bg-muted/30 transition-colors">{children}</tr>,
+  th: ({ children }) => <th className="px-4 py-3 text-left font-semibold text-foreground tracking-wide">{children}</th>,
+  td: ({ children }) => <td className="px-4 py-3 text-muted-foreground">{children}</td>,
 
   img: ({ src, alt }) => (
     <figure className="my-8">
@@ -254,6 +255,13 @@ export default function PostDetail() {
   const id = parseInt(params?.id || "0")
   const { data: post, isLoading } = usePost(id)
 
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post?.title,
+    datePublished: post?.createdAt,
+    publisher: { "@type": "Organization", name: "SVGC Dalauda" },
+  }
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -272,43 +280,46 @@ export default function PostDetail() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col font-body bg-background">
-      <main className="flex-1 py-12">
-        <article className="container mx-auto px-4 max-w-4xl">
-          <Link href="/posts">
-            <Button variant="ghost" className="mb-8 hover:bg-muted">
-              <ArrowLeft className="mr-2 h-4 w-4" /> Back to News
-            </Button>
-          </Link>
+    <>
+      <JsonLd data={articleJsonLd} />
+      <div className="min-h-screen flex flex-col font-body bg-background">
+        <main className="flex-1 py-12">
+          <article className="container mx-auto px-4 max-w-4xl">
+            <Link href="/posts">
+              <Button variant="ghost" className="mb-8 hover:bg-muted">
+                <ArrowLeft className="mr-2 h-4 w-4" /> Back to News
+              </Button>
+            </Link>
 
-          <div className="flex items-center gap-4 mb-6">
-            <Badge className="text-sm px-3 py-1 capitalize"
-              variant={post.category === "notice" ? "destructive" : post.category === "announcement" ? "default" : "secondary"}>
-              {post.category}
-            </Badge>
-            <div className="flex items-center text-muted-foreground text-sm">
-              <Calendar className="w-4 h-4 mr-2" />
-              {post.createdAt ? format(new Date(post.createdAt), "MMMM d, yyyy") : "Recent"}
+            <div className="flex items-center gap-4 mb-6">
+              <Badge className="text-sm px-3 py-1 capitalize"
+                variant={post.category === "notice" ? "destructive" : post.category === "announcement" ? "default" : "secondary"}>
+                {post.category}
+              </Badge>
+              <div className="flex items-center text-muted-foreground text-sm">
+                <Calendar className="w-4 h-4 mr-2" />
+                {post.createdAt ? format(new Date(post.createdAt), "MMMM d, yyyy") : "Recent"}
+              </div>
             </div>
-          </div>
 
-          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-8 text-foreground">
-            {post.title}
-          </h1>
+            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-8 text-foreground">
+              {post.title}
+            </h1>
 
-          <div className="w-full h-px bg-border mb-10" />
+            <div className="w-full h-px bg-border mb-10" />
 
-          <div className="max-w-none">
-            <ReactMarkdown
-              remarkPlugins={[remarkGfm, remarkDirective, remarkIframeDirective]}
-              rehypePlugins={[rehypeRaw]}
-              components={markdownComponents}
-            >
-              {post.content}
-            </ReactMarkdown>
-          </div>
-        </article>
-      </main>
-    </div>
+            <div className="max-w-none">
+              <ReactMarkdown
+                remarkPlugins={[remarkGfm, remarkDirective, remarkIframeDirective]}
+                rehypePlugins={[rehypeRaw]}
+                components={markdownComponents}
+              >
+                {post.content}
+              </ReactMarkdown>
+            </div>
+          </article>
+        </main>
+      </div>
+    </>
   )
 }
