@@ -1,26 +1,20 @@
-import { Metadata } from 'next';
+// app/(routes)/(pages)/forms/[id]/layout.tsx
+import { createMetadata } from "@/lib/seo"
+import type { Metadata } from "next"
 
 export async function generateMetadata({
   params,
 }: {
-  params: { id: string };
+  params: { id: string }
 }): Promise<Metadata> {
-  return {
-    title: 'Form - Swami Vivekananda Govt College',
-    description: 'Fill out the form from Swami Vivekananda Govt College. Submit your information securely for various college-related services and applications.',
-    openGraph: {
-      title: 'Form - Swami Vivekananda Govt College',
-      description: 'College application and submission form',
-      type: 'website',
-      url: `https://www.svgcdalauda.in/forms/${params.id}`,
-    },
-  };
+  return createMetadata({
+    title: "Application Form",
+    description: "Fill out the form from Swami Vivekananda Govt College.",
+    path: `/forms/${params.id}`,
+    noIndex: true,
+  })
 }
 
-export default function FormDetailLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return children;
+export default function FormDetailLayout({ children }: { children: React.ReactNode }) {
+  return children
 }

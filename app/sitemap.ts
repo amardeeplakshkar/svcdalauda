@@ -74,7 +74,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const forms = await storage.getForms()
     const publicForms = forms.filter((f: any) => f.isPublished === true)
     formRoutes = publicForms.map((form: any) => ({
-      url: `${BASE_URL}/form/${form.id}`,
+      url: `${BASE_URL}/forms/${form.id}`,
       lastModified: safeDate(form.createdAt),
       changeFrequency: 'monthly' as const,
       priority: 0.5

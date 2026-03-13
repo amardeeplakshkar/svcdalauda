@@ -5,7 +5,6 @@ import { getLocale } from 'next-intlayer/server'
 import { IntlayerServerProvider } from 'next-intlayer/server'
 import React from 'react'
 
-export const metadata = createMetadata()
 
 const LandingLayout = async ({ children }: { children: React.ReactNode }) => {
   const locale = await getLocale();
