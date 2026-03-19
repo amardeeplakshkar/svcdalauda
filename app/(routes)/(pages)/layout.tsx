@@ -1,10 +1,8 @@
 import { Navbar } from '@/components/blocks/Navbar'
 import Footer from '@/components/core/Footer'
-import { createMetadata } from '@/lib/seo'
 import { getLocale } from 'next-intlayer/server'
 import { IntlayerServerProvider } from 'next-intlayer/server'
 import React from 'react'
-
 
 const LandingLayout = async ({ children }: { children: React.ReactNode }) => {
   const locale = await getLocale();

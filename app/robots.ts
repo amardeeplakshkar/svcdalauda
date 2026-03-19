@@ -1,12 +1,12 @@
 import { MetadataRoute } from "next"
 
 export default function robots(): MetadataRoute.Robots {
-  return {
+return {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/api/", "/admin/", "/dashboard/"],
+      disallow: ["/api/", "/admin/"],
     },
-    sitemap: "https://www.svgcdalauda.in/sitemap.xml", 
+    sitemap: "https://www.svgcdalauda.in/sitemap.xml",
   }
 }
