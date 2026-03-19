@@ -84,9 +84,9 @@ export function createMetadata({
     creator:     siteConfig.creator,
     applicationName: siteConfig.shortName,
 
-    alternates: {
-      canonical: url,
-    },
+    // alternates: {
+    //   canonical: url,
+    // },
 
     openGraph: {
       title:       metaTitle,
