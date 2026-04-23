@@ -25,7 +25,7 @@ import { FormRenderer } from "@/components/admin/FormBuilder/FormRenderer";
 import { FormElement } from "@/shared/schema";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { Loader2, ArrowLeft, Eye, Share2, Save, Check } from "lucide-react";
+import { Loader2, ArrowLeft, Eye, Share2, Save } from "lucide-react";
 import { nanoid } from "nanoid";
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
@@ -182,6 +182,15 @@ export default function Builder() {
             />
           </div>
           <div className="flex items-center gap-2">
+            <Button 
+              variant={form?.isPublished ? "secondary" : "default"} 
+              size="sm" 
+              onClick={() => updateMutation.mutate({ id: formId, isPublished: !form?.isPublished })}
+              disabled={updateMutation.isPending}
+            >
+              {form?.isPublished ? "Unpublish Form" : "Publish Form"}
+            </Button>
+
             <Dialog>
               <DialogTrigger asChild>
                 <Button variant="ghost" size="sm">
