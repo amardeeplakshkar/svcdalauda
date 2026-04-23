@@ -1,18 +1,21 @@
 import { createMetadata } from '@/lib/seo';
 import { BookMarked, Monitor, Newspaper, Library as LibraryIcon, Mail, Phone, User } from 'lucide-react';
 import React from 'react';
-import Image from 'next/image';
+import { getLocale, IntlayerServerProvider, useIntlayer } from 'next-intlayer/server';
+import { NextPage } from 'next';
 
 export const metadata = createMetadata({
   title: "College Library",
 })
 
 const LibraryPage = () => {
+  const content = useIntlayer("libraryPage");
+  
   return (
     <div className="bg-background-light overflow-x-hidden dark:bg-background-dark text-gray-800 dark:text-gray-100 transition-colors duration-200 min-h-screen">
       <header className="bg-primary py-8 text-white text-center shadow-lg">
         <div className="container mx-auto px-4">
-          <h1 className="text-4xl quote-text md:text-5xl font-bold mb-2">College Library</h1>
+          <h1 className="text-4xl quote-text md:text-5xl font-bold mb-2">{content.title}</h1>
           <div className="h-1 w-24 bg-secondary mx-auto rounded-full"></div>
         </div>
       </header>
@@ -22,14 +25,14 @@ const LibraryPage = () => {
         {/* Top Section: Overview & Photo */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
           <div className="space-y-6">
-            <h2 className="text-3xl font-bold text-primary dark:text-gold">A Hub of Knowledge</h2>
+            <h2 className="text-3xl font-bold text-primary dark:text-gold">{content.hubTitle}</h2>
             <p className="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
-              Our library is dedicated to providing students with the resources they need to excel academically. We offer a growing collection of literature and references tailored to our student body.
+              {content.hubDesc}
             </p>
             <div className="bg-primary/5 dark:bg-primary/10 border-l-4 border-secondary p-6 rounded-r-xl">
-              <h3 className="font-bold text-lg mb-2 text-primary dark:text-orange-400">Library Policy</h3>
+              <h3 className="font-bold text-lg mb-2 text-primary dark:text-orange-400">{content.policyTitle}</h3>
               <p className="text-gray-700 dark:text-gray-300">
-                SC/ST books are provided by the MP Govt. specifically for SC/ST students, while donated books are available for General/OBC students.
+                {content.policyDesc}
               </p>
             </div>
           </div>
@@ -53,7 +56,7 @@ const LibraryPage = () => {
                 <BookMarked size={32} />
               </div>
               <h3 className="text-4xl font-black text-primary dark:text-gold mb-2">370</h3>
-              <p className="text-gray-600 dark:text-gray-400 font-medium">Total Available Books</p>
+              <p className="text-gray-600 dark:text-gray-400 font-medium">{content.stats.books}</p>
             </div>
 
             <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 flex flex-col items-center justify-center text-center hover:-translate-y-1 transition-transform">
@@ -61,7 +64,7 @@ const LibraryPage = () => {
                 <LibraryIcon size={32} />
               </div>
               <h3 className="text-4xl font-black text-primary dark:text-gold mb-2">0</h3>
-              <p className="text-gray-600 dark:text-gray-400 font-medium">Available Journals</p>
+              <p className="text-gray-600 dark:text-gray-400 font-medium">{content.stats.journals}</p>
             </div>
 
             <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 flex flex-col items-center justify-center text-center hover:-translate-y-1 transition-transform">
@@ -69,7 +72,7 @@ const LibraryPage = () => {
                 <Newspaper size={32} />
               </div>
               <h3 className="text-4xl font-black text-primary dark:text-gold mb-2">0</h3>
-              <p className="text-gray-600 dark:text-gray-400 font-medium">Newspapers / Magazines</p>
+              <p className="text-gray-600 dark:text-gray-400 font-medium">{content.stats.newspapers}</p>
             </div>
 
             <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 flex flex-col items-center justify-center text-center hover:-translate-y-1 transition-transform">
@@ -77,7 +80,7 @@ const LibraryPage = () => {
                 <Monitor size={32} />
               </div>
               <h3 className="text-4xl font-black text-primary dark:text-gold mb-2">1</h3>
-              <p className="text-gray-600 dark:text-gray-400 font-medium">Total Computers</p>
+              <p className="text-gray-600 dark:text-gray-400 font-medium">{content.stats.computers}</p>
             </div>
           </div>
 
@@ -88,12 +91,12 @@ const LibraryPage = () => {
             </div>
             
             <div className="relative z-10">
-              <h3 className="text-2xl font-bold mb-6 border-b border-red-800 pb-4">Librarian Details</h3>
+              <h3 className="text-2xl font-bold mb-6 border-b border-red-800 pb-4">{content.librarian.title}</h3>
               
               <div className="space-y-6">
                 <div>
-                  <p className="text-sm text-orange-200 uppercase tracking-wider mb-1">Name</p>
-                  <p className="text-xl font-semibold">Dr. Deepti Shrivastav</p>
+                  <p className="text-sm text-orange-200 uppercase tracking-wider mb-1">{content.librarian.nameLabel}</p>
+                  <p className="text-xl font-semibold">{content.librarian.name}</p>
                 </div>
                 
                 <div className="flex items-center gap-4">
@@ -101,7 +104,7 @@ const LibraryPage = () => {
                     <Mail size={20} />
                   </div>
                   <div className="truncate">
-                    <p className="text-sm text-orange-200 uppercase tracking-wider mb-1">Email</p>
+                    <p className="text-sm text-orange-200 uppercase tracking-wider mb-1">{content.librarian.emailLabel}</p>
                     <a href="mailto:deeptilib123@gmail.com" className="hover:text-secondary transition-colors break-all">
                       deeptilib123@gmail.com
                     </a>
@@ -113,7 +116,7 @@ const LibraryPage = () => {
                     <Phone size={20} />
                   </div>
                   <div>
-                    <p className="text-sm text-orange-200 uppercase tracking-wider mb-1">Contact No.</p>
+                    <p className="text-sm text-orange-200 uppercase tracking-wider mb-1">{content.librarian.contactLabel}</p>
                     <a href="tel:9755054064" className="hover:text-secondary transition-colors">
                       9755054064
                     </a>
@@ -129,4 +132,14 @@ const LibraryPage = () => {
   );
 };
 
-export default LibraryPage;
+const Page: NextPage = async () => {
+  const locale = await getLocale();
+
+  return (
+    <IntlayerServerProvider locale={locale}>
+      <LibraryPage />
+    </IntlayerServerProvider>
+  );
+};
+
+export default Page;
