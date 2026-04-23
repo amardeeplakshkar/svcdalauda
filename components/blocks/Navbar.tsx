@@ -66,20 +66,57 @@ const Navbar = ({
   menu = [
     { title: "Home", url: "/" },
     {
-      title: "About",
-      url: "/about",
+      title: "About Us",
+      url: "#",
+      items: [
+        {
+          title: "About College",
+          url: "/about",
+          description: "Learn about our history, vision, and mission.",
+        },
+        {
+          title: "Gallery",
+          url: "/gallery",
+          description: "Explore campus photos and recent events.",
+        },
+      ],
     },
     {
-      title: "Faculty",
-      url: "/faculty",
+      title: "Academics",
+      url: "#",
+      items: [
+        {
+          title: "Courses Offered",
+          url: "/courses",
+          description: "Explore our UG, PG, and Diploma programmes.",
+        },
+        {
+          title: "Faculty",
+          url: "/faculty",
+          description: "Meet our experienced and dedicated teaching staff.",
+        },
+        {
+          title: "Library",
+          url: "/library",
+          description: "Access our vast collection of books and journals.",
+        },
+      ],
     },
     {
-      title: "Gallery",
-      url: "/gallery",
-    },
-    {
-      title: "Student Resources",
-      url: "/resources"
+      title: "Students",
+      url: "#",
+      items: [
+        {
+          title: "Student Resources",
+          url: "/resources",
+          description: "Access study materials, syllabus, and forms.",
+        },
+        {
+          title: "Scholarships",
+          url: "/scholarship",
+          description: "Details on financial aid and government schemes.",
+        },
+      ],
     },
     {
       title: "Contact",
@@ -197,16 +234,16 @@ const renderMenuItem = (item: MenuItem) => {
       <NavigationMenuItem key={item.title} className="text-muted-foreground">
         <NavigationMenuTrigger>{item.title}</NavigationMenuTrigger>
         <NavigationMenuContent>
-          <ul className="w-80 p-3">
-            <NavigationMenuLink>
-              {item.items.map((subItem) => (
-                <li key={subItem.title}>
+          <ul className="w-80 p-3 flex flex-col gap-2">
+            {item.items.map((subItem) => (
+              <li key={subItem.title}>
+                <NavigationMenuLink asChild>
                   <a
                     className="flex select-none gap-4 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-muted hover:text-accent-foreground"
                     href={subItem.url}
                   >
                     {subItem.icon}
-                    <div>
+                    <div className="space-y-1">
                       <div className="text-sm font-semibold">
                         {subItem.title}
                       </div>
@@ -217,9 +254,9 @@ const renderMenuItem = (item: MenuItem) => {
                       )}
                     </div>
                   </a>
-                </li>
-              ))}
-            </NavigationMenuLink>
+                </NavigationMenuLink>
+              </li>
+            ))}
           </ul>
         </NavigationMenuContent>
       </NavigationMenuItem>

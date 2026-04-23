@@ -116,8 +116,8 @@ const ContactPageContent = {
           hi: "ईमेल",
         }),
         value: t({
-          en: "info@svgcdalauda.ac.in\nprincipal@svgcdalauda.ac.in",
-          hi: "info@svgcdalauda.ac.in\nprincipal@svgcdalauda.ac.in",
+          en: "info@svgcdalauda.in\nprincipal@svgcdalauda.in",
+          hi: "info@svgcdalauda.in\nprincipal@svgcdalauda.in",
         }),
       },
       officeHours: {

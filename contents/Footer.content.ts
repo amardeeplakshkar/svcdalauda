@@ -62,7 +62,7 @@ const FooterContent = {
         hi: "दलौदा, मंदसौर जिला,\nमध्य प्रदेश - 458667",
       }),
       phone: t({ en: "+91 0000 000000", hi: "+91 0000 000000" }),
-      email: t({ en: "info@svgcdalauda.ac.in", hi: "info@svgcdalauda.ac.in" }),
+      email: t({ en: "info@svgcdalauda.in", hi: "info@svgcdalauda.in" }),
     },
 
     copyright: t({

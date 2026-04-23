@@ -3,7 +3,7 @@ import { t, type Dictionary } from "intlayer";
 const Content = {
     key: "principleMessage",
     content:{
-        name: t({ en: "Principal Name", hi: "प्रधानाचार्य का नाम" }),
+        name: t({ en: "Dr. J.L.Arya", hi: "डॉ. जे.एल. आर्य" }),
         designation: t({ en: "Principal, SVGC Dalauda", hi: "प्रधानाचार्य, स्वामी विवेकानंद सरकारी कॉलेज दालौदा" }),
         title: t({ en: "Principal's Message", hi: "प्रधानाचार्य का संदेश" }),
         quote: t({ en: "Education is the manifestation of the perfection already in manifestationan.", hi: "शिक्षा मनुष्य में पहले से ही विद्यमान पूर्णता का प्रकटीकरण है।" }),

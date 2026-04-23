@@ -24,7 +24,7 @@ export const PrincipalMessage02 = () => {
           <div className="lg:col-span-5 relative group">
             <div className="absolute -inset-4 border-2 border-gold/30 rounded-2xl transition-all group-hover:inset-0"></div>
             <div className="relative z-10 overflow-hidden rounded-xl shadow-2xl border-4 border-white dark:border-gray-800">
-              <img alt="Portrait of the Principal" className="w-full aspect-4/5 object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyrdOBljxSmd6GAkhZyGRV3EcPKwP_1ENTFDucUx3m_I9jU5-tuWyoeuapSEaMRt-3MOY93eOd_O7lWIEIYS3Mz2EHvYq-wIVCHg9SwW0vclJEPpZDMv0yycznrUSWEk9yyeO5kPS6KWFYES2BU6WUCFNhehcuxFF0tMDKgIAeDMRc5YifGKiaqoCnyz8aZwyDOzN2KZkYkfWxYvTtawqpScKpKZCkfE_vfZybUIoZrkniqdPJhmaQnujoKRj6Lnjb9Drmbk6IQQ8" />
+              <img alt="Portrait of the Principal" className="w-full aspect-4/5 object-cover transition-transform duration-700 group-hover:scale-105" src="https://www.govtcollegedaloda.org/images/principal.jpg" />
               <div className="absolute bottom-0 left-0 right-0 p-6 bg-linear-to-t from-black/80 to-transparent text-white">
                 <p className="quote-text text-2xl font-bold">{content.name}</p>
                 <p className="text-gold font-medium uppercase tracking-widest text-sm">{content.designation}</p>
@@ -46,7 +46,7 @@ export const PrincipalMessage02 = () => {
             </div>
             <div className="flex flex-col sm:flex-row items-center justify-between gap-8 pt-6 border-t border-gray-200 dark:border-gray-800">
               <div className="text-center sm:text-left">
-                <div className="font-signature text-4xl text-primary dark:text-gold mb-1">Signature</div>
+                <div className="font-signature text-4xl text-primary dark:text-gold mb-1">{content.name}</div>
                 <p className="text-sm font-semibold uppercase tracking-wider text-gray-500">{content.signature}</p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">

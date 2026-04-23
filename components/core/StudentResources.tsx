@@ -291,7 +291,7 @@ export default function StudentResources() {
                 </div>
                 <div className="flex gap-4">
                     <button
-                        onClick={() => window.location.href = 'mailto:info@svgcdalauda.ac.in'}
+                        onClick={() => window.location.href = 'mailto:info@svgcdalauda.in'}
                         className="px-6 py-2 border-2 border-primary text-primary rounded-lg font-bold text-sm hover:bg-primary hover:text-white transition-all"
                         aria-label="Email office"
                     >
