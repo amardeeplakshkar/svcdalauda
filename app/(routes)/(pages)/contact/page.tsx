@@ -5,6 +5,7 @@ import React from 'react'
 import { MdSend } from 'react-icons/md'
 import { getLocale, IntlayerServerProvider, useIntlayer } from 'next-intlayer/server';
 import { createMetadata } from '@/lib/seo';
+import ContactForm from './ContactForm';
 
 export const metadata = createMetadata({
   title: "Contact Us",
@@ -32,64 +33,7 @@ const ContactPage = () => {
               <p className="text-gray-600 dark:text-gray-400">{content.form.description}</p>
             </div>
 
-            <form action="#" className="space-y-6" method="POST">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <Label className="block text-sm font-semibold mb-2">{content.form.fields.fullName.label}</Label>
-                  <input
-                    className="w-full px-4 py-3 rounded border-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:ring-secondary focus:border-secondary transition-all"
-                    id="full-name"
-                    name="full-name"
-                    placeholder={content.form.fields.fullName.placeholder.value}
-                    type="text"
-                  />
-                </div>
-                <div>
-                  <Label className="block text-sm font-semibold mb-2">{content.form.fields.email.label}</Label>
-                  <input
-                    className="w-full px-4 py-3 rounded border-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:ring-secondary focus:border-secondary transition-all"
-                    id="email"
-                    name="email"
-                    placeholder={content.form.fields.email.placeholder.value}
-                    type="email"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <Label className="block text-sm font-semibold mb-2">{content.form.fields.subject.label}</Label>
-                <select
-                  className="w-full px-4 py-3 rounded border-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:ring-secondary focus:border-secondary transition-all"
-                  id="subject"
-                  name="subject"
-                >
-                  <option>{content.form.fields.subject.options.generalInquiry}</option>
-                  <option>{content.form.fields.subject.options.admissions}</option>
-                  <option>{content.form.fields.subject.options.academicCalendar}</option>
-                  <option>{content.form.fields.subject.options.departmentDetails}</option>
-                  <option>{content.form.fields.subject.options.other}</option>
-                </select>
-              </div>
-
-              <div>
-                <Label className="block text-sm font-semibold mb-2">{content.form.fields.message.label}</Label>
-                <textarea
-                  className="w-full px-4 py-3 rounded border-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:ring-secondary focus:border-secondary transition-all resize-none"
-                  rows={5}
-                  id="message"
-                  name="message"
-                  placeholder={content.form.fields.message.placeholder.value}
-                ></textarea>
-              </div>
-
-              <button
-                className="w-full md:w-auto px-10 py-4 bg-primary hover:bg-red-900 text-white font-bold rounded shadow-lg transform active:scale-95 transition-all flex items-center justify-center gap-2"
-                type="submit"
-              >
-                <span className="material-icons-outlined"><MdSend /></span>
-                {content.form.submitButton}
-              </button>
-            </form>
+            <ContactForm content={content} />
           </div>
 
           {/* Contact Details */}
@@ -131,7 +75,7 @@ const ContactPage = () => {
                   </div>
                 </div>
 
-                <div className="flex items-start gap-4">
+                {/* <div className="flex items-start gap-4">
                   <div className="bg-secondary p-3 rounded shadow-inner">
                     <span className="material-icons-outlined"><Clock /></span>
                   </div>
@@ -139,7 +83,7 @@ const ContactPage = () => {
                     <h4 className="font-bold text-orange-200">{content.contactDetails.officeHours.label}</h4>
                     <p className="text-sm opacity-90 whitespace-pre-line">{content.contactDetails.officeHours.value}</p>
                   </div>
-                </div>
+                </div> */}
 
               </div>
             </div>

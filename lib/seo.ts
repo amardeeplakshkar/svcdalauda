@@ -128,8 +128,6 @@ export function createMetadata({
       apple:    "/apple-touch-icon.png",
     },
 
-    manifest: "/site.webmanifest",
-
     verification: {
       // google: "your-google-search-console-token",
     },

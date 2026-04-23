@@ -66,7 +66,7 @@ const Navbar = ({
   menu = [
     { title: "Home", url: "/" },
     {
-      title: "About Us",
+      title: "About",
       url: "/about",
     },
     {
@@ -74,7 +74,15 @@ const Navbar = ({
       url: "/faculty",
     },
     {
-      title: "Contact Us",
+      title: "Gallery",
+      url: "/gallery",
+    },
+    {
+      title: "Student Resources",
+      url: "/resources"
+    },
+    {
+      title: "Contact",
       url: "/contact",
     },
   ],

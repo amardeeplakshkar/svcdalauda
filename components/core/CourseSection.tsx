@@ -37,14 +37,10 @@ const CourseSection = () => {
                                 <span className="material-icons text-secondary text-xs"><MdRadioButtonChecked/></span>
                                 B.Sc. Biology &amp; Chemistry
                             </li>
-                            <li className="flex items-center gap-2">
-                                <span className="material-icons text-secondary text-xs"><MdRadioButtonChecked/></span>
-                                M.Sc. Specialized Research
-                            </li>
                         </ul>
-                        <a className="inline-flex items-center gap-2 text-primary dark:text-secondary font-bold group-hover:gap-4 hover:gap-4 transition-all" href="#">
+                        {/* <a className="inline-flex items-center gap-2 text-primary dark:text-secondary font-bold group-hover:gap-4 hover:gap-4 transition-all" href="#">
                             {content.viewAllCourses} <span className="material-icons text-lg"><MdArrowForward/></span>
-                        </a>
+                        </a> */}
                     </div>
                     <div className="group bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 p-8 rounded-2xl shadow-sm card-hover transition-all duration-300">
                         <div className="w-16 h-16 bg-primary/10 dark:bg-primary/20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
@@ -65,14 +61,10 @@ const CourseSection = () => {
                                 <span className="material-icons text-secondary text-xs"><MdRadioButtonChecked/></span>
                                 B.A. Political Science &amp; History
                             </li>
-                            <li className="flex items-center gap-2">
-                                <span className="material-icons text-secondary text-xs"><MdRadioButtonChecked/></span>
-                                M.A. Sociology &amp; Economics
-                            </li>
                         </ul>
-                        <a className="inline-flex items-center gap-2 text-primary dark:text-secondary font-bold group-hover:gap-4 hover:gap-4 transition-all" href="#">
+                        {/* <a className="inline-flex items-center gap-2 text-primary dark:text-secondary font-bold group-hover:gap-4 hover:gap-4 transition-all" href="#">
                             {content.viewAllCourses} <span className="material-icons text-lg"><MdArrowForward/></span>
-                        </a>
+                        </a> */}
                     </div>
                     <div className="group bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 p-8 rounded-2xl shadow-sm card-hover transition-all duration-300">
                         <div className="w-16 h-16 bg-primary/10 dark:bg-primary/20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
@@ -93,14 +85,10 @@ const CourseSection = () => {
                                 <span className="material-icons text-secondary text-xs"><MdRadioButtonChecked/></span>
                                 B.Com. Computer Application
                             </li>
-                            <li className="flex items-center gap-2">
-                                <span className="material-icons text-secondary text-xs"><MdRadioButtonChecked/></span>
-                                M.Com. Business Management
-                            </li>
                         </ul>
-                        <a className="inline-flex items-center gap-2 text-primary dark:text-secondary font-bold group-hover:gap-4 hover:gap-4 transition-all" href="#">
+                        {/* <a className="inline-flex items-center gap-2 text-primary dark:text-secondary font-bold group-hover:gap-4 hover:gap-4 transition-all" href="#">
                             {content.viewAllCourses} <span className="material-icons text-lg"><MdArrowForward/></span>
-                        </a>
+                        </a> */}
                     </div>
                 </div>
             </div>

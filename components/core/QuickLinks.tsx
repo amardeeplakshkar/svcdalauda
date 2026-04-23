@@ -11,24 +11,24 @@ const QuickLinks = () => {
       <div className="mx-auto py-4 grid grid-cols-2 md:grid-cols-4">
 
         {/* ITEM 1 */}
-        <div className="flex items-center justify-center gap-2 p-2 border-r border-yellow-300/40"
+        <Link href={'/resources'} className="flex items-center justify-center gap-2 p-2 border-r border-yellow-300/40"
           style={{
             color: 'gold'
           }}
         >
           <DepartmentDuoIcon color="gold" size={35} />
           <span>{content.departments}</span>
-        </div>
+        </Link>
 
         {/* ITEM 2 */}
-        <div className="flex items-center justify-center gap-2 p-2 md:border-r md:border-yellow-300/40"
+        <Link href={'/about'} className="flex items-center justify-center gap-2 p-2 md:border-r md:border-yellow-300/40"
           style={{
             color: 'gold'
           }}
         >
           <CalenderDuoIcon color="gold" size={35} />
           <span>{content.calendar}</span>
-        </div>
+        </Link>
 
         <Separator className='bg-yellow-300/40 my-1 self-center md:sr-only' />
         <Separator className='bg-yellow-300/40 my-1 self-center md:sr-only' />
@@ -45,7 +45,7 @@ const QuickLinks = () => {
         </Link>
 
         {/* ITEM 4 */}
-        <Link href={'/about'} className="flex items-center justify-center gap-2 p-2"
+        <Link href={'/contact'} className="flex items-center justify-center gap-2 p-2"
           style={{
             color: 'gold'
           }}

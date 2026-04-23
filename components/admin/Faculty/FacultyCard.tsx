@@ -78,7 +78,7 @@ export function FacultyCard02({ faculty }: { faculty: Faculty }) {
       <p className="text-gray-500 dark:text-gray-400 text-sm mb-6">{faculty.department}<br/>{faculty.degree}</p>
       <div className="mt-auto flex gap-4">
         <a className="text-gray-400 hover:text-primary transition-colors" href={`mailto:${faculty.email}`}><span className="material-icons text-xl"><Mail /></span></a>
-        <a className="text-gray-400 hover:text-primary transition-colors" href={`https://wa.me/${faculty.phone}`}><span className="material-icons text-xl"><Phone /></span></a>
+        <a className="text-gray-400 hover:text-primary transition-colors" target="_blank" href={`https://wa.me/91${faculty.phone}`}><span className="material-icons text-xl"><Phone /></span></a>
       </div>
     </div>
   )

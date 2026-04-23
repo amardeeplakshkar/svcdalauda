@@ -9,21 +9,21 @@ const portals = [
     {
         "title": "Vikram Results",
         "subtitle": "University Scorecards",
-        "href": "#",
+        "href": "https://vikuniexam.in/UG_NEP_RESULT.aspx",
         "icon": <MdSchool />,
         "accent": "primary"
     },
     {
         "title": "Scholarship 2.0",
         "subtitle": "MP State Portal",
-        "href": "#",
+        "href": "https://tribal.mp.gov.in/mptaas/",
         "icon": <MdAccountBalance />,
         "accent": "primary"
     },
     {
-        "title": "E-Pravesh Port",
+        "title": "E-Pravesh Portal",
         "subtitle": "Admission Portal",
-        "href": "#",
+        "href": "https://epravesh.highereducation.mp.gov.in/",
         "icon": <MdReceiptLong />,
         "accent": "primary"
     }

@@ -5,6 +5,7 @@ import {
   Command,
   FileText,
   Form,
+  Image,
   LayoutDashboard,
   Send,
   Users,
@@ -49,7 +50,7 @@ const data = {
     {
       title: "Gallery",
       url: "/admin/gallery",
-      icon: Form,
+      icon: Image,
     },
   ],
   navSecondary: [

@@ -10,6 +10,7 @@ import { PrincipalMessage02 } from '@/components/core/PrincipalMessage'
 import QuickLinks from '@/components/core/QuickLinks'
 import StudentResources from '@/components/core/StudentResources';
 import { getLocale, IntlayerServerProvider } from 'next-intlayer/server';
+import Testimonials from '@/components/core/Testimonials';
 
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const App = () => {
       <Gallary />
       <Container className='p-2'>
         <StudentResources />
+        <Testimonials/>
       </Container>
     </div>
   )

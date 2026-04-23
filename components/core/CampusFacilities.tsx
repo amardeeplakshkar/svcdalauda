@@ -8,7 +8,7 @@ import { useIntlayer } from 'next-intlayer/server'
 const CampusFacilities = () => {
     const content = useIntlayer('campusFacilities')
     return (
-        <section className="py-8 md:py-12">
+        <section id='campusinfo' className="py-8 md:py-12">
             <div className="container mx-auto">
                 <div className="bg-card rounded-2xl border border-border/50 shadow-soft overflow-hidden">
                     <div className="p-8 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
@@ -56,7 +56,7 @@ const CampusFacilities = () => {
                         <div className="space-y-4">
                             <div className="aspect-[6/3] rounded-xl overflow-hidden">
                                 <img
-                                    src="https://images.unsplash.com/photo-1562774053-701939374585?w=800&h=600&fit=crop"
+                                    src="https://ik.imagekit.io/qazwsx90/assets/image.png?tr=w-400,h-400,fo-face,q-auto,f-webp"
                                     alt="College Building"
                                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                                 />

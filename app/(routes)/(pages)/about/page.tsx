@@ -55,7 +55,7 @@ const AboutPage = () => {
                             <div className="relative group">
                                 <div className="absolute -inset-4 bg-accent-gold/10 rounded-xl transform -rotate-2 group-hover:rotate-0 transition-transform"></div>
                                 <div className="relative overflow-hidden rounded-xl aspect-[4/5] shadow-2xl">
-                                    <img alt={content?.history?.imageAlt.value ?? ''} className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" data-alt="Vintage sepia-toned photograph of college founding ceremony" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpksC6BX9TQHXgYUZeMrri1v5KtCj8IoPKi1aFWOij_8fD1RylVCX0Fq0HJYO0V4x2YlIr_2QJv9oI0GJEdJOlrvoXIwh04jaqvlC4HtmiYj5J-3OJ4AP908g1L0GfHAObGZuToLePMdB3Ci00PX3jaK6bt1l9KSMD4Tl0WaaUxNPYvvQQsZ9lY4qhWSOR1nkT_HqgT0S9NXzViBgUBNJ9YDHP9oTclPhG1lcrOgMcIEq-uJVHY8DQytn4UK6BzuP84nGKC65zu_I" />
+                                    <img alt={content?.history?.imageAlt.value ?? ''} className="w-full h-full object-cover transition-all duration-700" data-alt="Vintage sepia-toned photograph of college founding ceremony" src="https://ik.imagekit.io/qazwsx90/assets/image.png?tr=w-1200,q-auto,f-webp" />
                                     <div className="absolute inset-0 bg-primary/20 mix-blend-multiply"></div>
                                 </div>
                             </div>
@@ -102,7 +102,7 @@ const AboutPage = () => {
                     </div>
                 </section>
 
-                <section className="py-20 border-t border-primary/5">
+                {/* <section className="py-20 border-t border-primary/5">
                     <div className="flex flex-col md:flex-row justify-between mb-12 gap-6">
                         <div>
                             <span className="text-accent-gold font-bold uppercase tracking-widest text-xs">{content.leadership.badge}</span>
@@ -150,7 +150,7 @@ const AboutPage = () => {
                             <p className="text-sm text-accent-gold font-medium uppercase tracking-tighter">{content.leadership.members[3].role}</p>
                         </div>
                     </div>
-                </section>
+                </section> */}
 
                 <section className="py-24 bg-primary/5 -mx-6 px-6 md:-mx-40 md:px-40">
                     <div className="max-w-[1200px] mx-auto">
